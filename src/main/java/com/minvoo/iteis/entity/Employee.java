@@ -1,7 +1,8 @@
 package com.minvoo.iteis.entity;
 
 
-import lombok.Data;
+import lombok.*;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -9,6 +10,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Data
+@Builder(toBuilder = true)
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "employees")
 public class Employee {

@@ -1,1 +1,12 @@
+/Users/mariusz/Documents/Projekty/ITEIS/src/main/java/com/minvoo/iteis/entity/Role.java
 /Users/mariusz/Documents/Projekty/ITEIS/src/main/java/com/minvoo/iteis/IteisApplication.java
+/Users/mariusz/Documents/Projekty/ITEIS/src/main/java/com/minvoo/iteis/dto/EmployeeDto.java
+/Users/mariusz/Documents/Projekty/ITEIS/src/main/java/com/minvoo/iteis/repository/EmployeeRepository.java
+/Users/mariusz/Documents/Projekty/ITEIS/src/main/java/com/minvoo/iteis/service/EmployeeService.java
+/Users/mariusz/Documents/Projekty/ITEIS/src/main/java/com/minvoo/iteis/controller/EmployeeController.java
+/Users/mariusz/Documents/Projekty/ITEIS/src/main/java/com/minvoo/iteis/service/EmployeeServiceImpl.java
+/Users/mariusz/Documents/Projekty/ITEIS/src/main/java/com/minvoo/iteis/entity/Employee.java
+/Users/mariusz/Documents/Projekty/ITEIS/src/main/java/com/minvoo/iteis/mapper/EmployeeMapper.java
+/Users/mariusz/Documents/Projekty/ITEIS/src/main/java/com/minvoo/iteis/entity/Computer.java
+/Users/mariusz/Documents/Projekty/ITEIS/src/main/java/com/minvoo/iteis/exception/EmployeeNotFoundException.java
+/Users/mariusz/Documents/Projekty/ITEIS/src/main/java/com/minvoo/iteis/entity/DeviceType.java
