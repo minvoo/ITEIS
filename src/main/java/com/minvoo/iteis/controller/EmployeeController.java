@@ -1,5 +1,6 @@
 package com.minvoo.iteis.controller;
 
+import com.minvoo.iteis.dto.EmployeeDto;
 import com.minvoo.iteis.entity.Employee;
 import com.minvoo.iteis.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,14 @@ public class EmployeeController {
     public ResponseEntity<?> saveEmployee(@RequestBody Employee employee) {
         return new ResponseEntity<>(employeeService.saveEmployee(employee), HttpStatus.CREATED);
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<?> updateEmployee(@PathVariable Long id,
+                                            @RequestBody EmployeeDto employeeDto) {
+        EmployeeDto employeeResponse = employeeService.updateEmployee(employeeDto, id);
+        return new ResponseEntity<>(employeeResponse, HttpStatus.OK);
+    }
+
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteEmployee(@PathVariable Long id) {

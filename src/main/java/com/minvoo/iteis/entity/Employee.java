@@ -14,7 +14,8 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "employees")
+@Table(name = "employees", uniqueConstraints = {@UniqueConstraint(columnNames = {"username"}),
+        @UniqueConstraint(columnNames = {"email"})})
 public class Employee {
 
     @Id
@@ -24,26 +25,29 @@ public class Employee {
     @Column(name = "username")
     private String username;
 
-    @Column(name="password")
+    @Column(name = "password")
     private String password;
+
+    @Column(name = "email")
+    private String email;
 
     @Column(name = "first_name")
     private String firstName;
 
-    @Column(name="last_Name")
+    @Column(name = "last_Name")
     private String lastName;
 
-    @Column(name="create_time")
+    @Column(name = "create_time")
     private LocalDateTime createTime;
 
-    @Column(name="position")
+    @Column(name = "position")
     private String position;
 
     @Enumerated(EnumType.STRING)
-    @Column(name="role")
+    @Column(name = "role")
     private Role role;
 
-    @OneToMany(mappedBy = "owner", orphanRemoval = false)
+    @OneToMany(mappedBy = "employee", orphanRemoval = false)
     private Set<Computer> computers = new HashSet<>();
 
 

@@ -14,9 +14,6 @@ public class Computer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Enumerated(EnumType.STRING)
-    private DeviceType deviceType;
-
     @Column(name = "operating_system")
     private String operatingSystem;
 
@@ -43,5 +40,5 @@ public class Computer {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="employee_id", nullable = false)
-    private Employee owner;
+    private Employee employee;
 }

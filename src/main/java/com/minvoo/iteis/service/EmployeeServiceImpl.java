@@ -38,7 +38,21 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public Employee saveEmployee(Employee employee) {
         employee.setCreateTime(LocalDateTime.now());
-        return employeeRepository.save(employee);
+        return employeeRepository.saveAndFlush(employee);
+    }
+
+    @Override
+    public EmployeeDto updateEmployee(EmployeeDto employeeDto, Long id) {
+
+        Employee employee = employeeRepository.getById(id);
+
+        employee.setPassword(employeeDto.getPassword());
+        employee.setFirstName(employeeDto.getFirstName());
+        employee.setPosition(employeeDto.getPosition());
+        employee.setLastName(employeeDto.getLastName());
+
+        employeeRepository.saveAndFlush(employee);
+        return EmployeeMapper.mapToDto(employee);
     }
 
     @Override
