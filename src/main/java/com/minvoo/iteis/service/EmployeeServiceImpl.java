@@ -26,13 +26,13 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public Optional<EmployeeDto> getById(Long id) {
+    public EmployeeDto findById(Long id) {
 
-        Optional<Employee> employee = Optional.ofNullable(Optional.of(employeeRepository.getById(id))
-                .orElseThrow(() -> new EmployeeNotFoundException("User with id " + id + "doesn't exist")));
+         Employee employee = employeeRepository.findById(id)
+                .orElseThrow(() -> new EmployeeNotFoundException("User with id " + id + "doesn't exist"));
 
 
-        return Optional.ofNullable(EmployeeMapper.mapToDto(employee.get()));
+        return EmployeeMapper.mapToDto(employee);
     }
 
     @Override

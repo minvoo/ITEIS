@@ -25,5 +25,5 @@ public class EmployeeDto {
     private LocalDateTime createTime;
     private String position;
     private Role role;
-    private Set<Computer> computers = new HashSet<>();
+  //  private Set<Computer> computers = new HashSet<>();
 }

@@ -12,7 +12,7 @@ public interface EmployeeService {
 
     List<EmployeeDto> getAllEmployees();
 
-    Optional<EmployeeDto> getById(Long id);
+    EmployeeDto findById(Long id);
 
     Employee saveEmployee(Employee employee);
 

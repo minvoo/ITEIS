@@ -20,7 +20,7 @@ public class EmployeeMapper {
                 .role(employee.getRole())
                 .createTime(employee.getCreateTime())
                 .position(employee.getPosition())
-                .computers(employee.getComputers())
+//                .computers(employee.getComputers())
                 .build();
     }
 

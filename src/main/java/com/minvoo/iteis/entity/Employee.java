@@ -1,6 +1,8 @@
 package com.minvoo.iteis.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -10,7 +12,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Data
-@Builder(toBuilder = true)
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -47,8 +48,9 @@ public class Employee {
     @Column(name = "role")
     private Role role;
 
-    @OneToMany(mappedBy = "employee", orphanRemoval = false)
-    private Set<Computer> computers = new HashSet<>();
+//    @JsonIgnoreProperties
+//    @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL, orphanRemoval = false)
+//    private Set<Computer> computers = new HashSet<>();
 
 
 }
