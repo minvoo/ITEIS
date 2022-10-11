@@ -2,17 +2,13 @@ package com.minvoo.iteis.service;
 
 import com.minvoo.iteis.dto.ComputerDto;
 import com.minvoo.iteis.entity.Computer;
-import com.minvoo.iteis.entity.Employee;
 import com.minvoo.iteis.exception.ComputerNotFoundException;
 import com.minvoo.iteis.mapper.ComputerMapper;
-import com.minvoo.iteis.mapper.EmployeeMapper;
 import com.minvoo.iteis.repository.ComputerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ComputerServiceImpl implements ComputerService {

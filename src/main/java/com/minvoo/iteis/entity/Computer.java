@@ -1,15 +1,13 @@
 package com.minvoo.iteis.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
 import javax.persistence.*;
-import java.util.Set;
 
 @Data
 @Entity
-@Table(name ="computers")
+@Table(name = "computers")
 @Accessors(chain = true)
 public class Computer {
 
@@ -41,15 +39,15 @@ public class Computer {
     @Column(name = "office_key")
     private String officeKey;
 
-    @Column(name="laptop")
+    @Column(name = "laptop")
     private Boolean isLaptop;
 
-    @Column(name= "employee_id")
+    @Column(name = "employee_id")
     private Long employeeId;
 
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="employee_id", referencedColumnName = "id", insertable = false, updatable = false)
+    @JoinColumn(name = "employee_id", referencedColumnName = "id", insertable = false, updatable = false)
     private Employee employee;
 
 }

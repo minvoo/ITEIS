@@ -1,13 +1,12 @@
 package com.minvoo.iteis.dto;
 
-import com.minvoo.iteis.entity.Computer;
 import com.minvoo.iteis.entity.Role;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.Set;
 
 @Data
 @Builder(toBuilder = true)
@@ -25,5 +24,5 @@ public class EmployeeDto {
     private LocalDateTime createTime;
     private String position;
     private Role role;
-  //  private Set<Computer> computers = new HashSet<>();
+    //  private Set<Computer> computers = new HashSet<>();
 }

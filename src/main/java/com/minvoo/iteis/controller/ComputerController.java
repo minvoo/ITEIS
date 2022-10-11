@@ -1,9 +1,8 @@
 package com.minvoo.iteis.controller;
+
 import com.minvoo.iteis.dto.ComputerDto;
-import com.minvoo.iteis.dto.EmployeeDto;
 import com.minvoo.iteis.entity.Computer;
 import com.minvoo.iteis.service.ComputerService;
-import com.minvoo.iteis.service.ComputerServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

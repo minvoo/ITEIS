@@ -2,10 +2,12 @@ package com.minvoo.iteis.service;
 
 import com.minvoo.iteis.dto.EmployeeDto;
 import com.minvoo.iteis.entity.Employee;
+import com.minvoo.iteis.entity.Role;
 import com.minvoo.iteis.exception.EmployeeNotFoundException;
 import com.minvoo.iteis.mapper.EmployeeMapper;
 import com.minvoo.iteis.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -15,6 +17,8 @@ import java.util.Optional;
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
     @Autowired
     private EmployeeRepository employeeRepository;
 
@@ -28,7 +32,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public EmployeeDto findById(Long id) {
 
-         Employee employee = employeeRepository.findById(id)
+        Employee employee = employeeRepository.findById(id)
                 .orElseThrow(() -> new EmployeeNotFoundException("User with id " + id + "doesn't exist"));
 
 
@@ -38,6 +42,8 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public Employee saveEmployee(Employee employee) {
         employee.setCreateTime(LocalDateTime.now());
+        employee.setRole(Role.USER);
+        employee.setPassword(passwordEncoder.encode(employee.getPassword()));
         return employeeRepository.saveAndFlush(employee);
     }
 
@@ -59,4 +65,12 @@ public class EmployeeServiceImpl implements EmployeeService {
     public void deleteById(Long id) {
         employeeRepository.deleteById(id);
     }
+
+    @Override
+    public Optional<Employee> findByUsername(String username) {
+
+        return employeeRepository.findByUsername(username);
+
+    }
+
 }

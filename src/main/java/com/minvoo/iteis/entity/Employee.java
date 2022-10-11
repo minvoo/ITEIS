@@ -1,15 +1,13 @@
 package com.minvoo.iteis.entity;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import lombok.*;
-import org.springframework.web.bind.annotation.RequestMapping;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -23,13 +21,16 @@ public class Employee {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "username")
+    @Column(name = "username", nullable = false)
+    @NonNull
     private String username;
 
-    @Column(name = "password")
+    @Column(name = "password", nullable = false)
+    @NonNull
     private String password;
 
-    @Column(name = "email")
+    @Column(name = "email", nullable = false)
+    @NonNull
     private String email;
 
     @Column(name = "first_name")
@@ -47,6 +48,9 @@ public class Employee {
     @Enumerated(EnumType.STRING)
     @Column(name = "role")
     private Role role;
+
+    @Transient
+    private String token;
 
 //    @JsonIgnoreProperties
 //    @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL, orphanRemoval = false)
