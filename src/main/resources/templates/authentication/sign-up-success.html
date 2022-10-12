@@ -1,0 +1,14 @@
+<!doctype html>
+<html class="no-js" lang="EN">
+
+<!-- head -->
+<div th:replace="/components/head :: fragment"></div>
+<div th:replace="/components/header :: fragment"></div>
+
+<body>
+<div class="alert alert-info">You have signed up successfully! You can now login through the
+  form below.
+</div>
+<form th:replace="/authentication/login-form :: fragment">...</form>
+
+</body>

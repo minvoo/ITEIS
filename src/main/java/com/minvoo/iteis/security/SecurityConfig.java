@@ -40,16 +40,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.cors();
-        http.csrf().disable();
-        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+        http.csrf().disable()
+                .formLogin(form ->form.loginPage("/login").defaultSuccessUrl("/"))
+                .authorizeRequests()
+                .antMatchers("/login").permitAll()
+                .antMatchers("/authentication/**").permitAll()
+                .antMatchers("/employees/list").hasRole(Role.ADMIN.name())
+                .antMatchers("/employees/delete/**").hasRole(Role.ADMIN.name())
+                .antMatchers("/admin/**").hasRole(Role.ADMIN.name())
+                .and().httpBasic();
 
-        http.authorizeRequests()
-                .antMatchers("/api/authentication/**").permitAll()
-                .antMatchers("/api/employees/**").hasRole(Role.ADMIN.name())
-                .anyRequest().authenticated();
-
-        http.addFilterBefore(jwtAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
+        // TODO: will enable below line of code
+        //  when I find the way how to make JWT  works on Web Controllers.
+//        http.addFilterBefore(jwtAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
     }
 
     @Bean

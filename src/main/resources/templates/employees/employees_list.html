@@ -1,0 +1,51 @@
+<div th:replace="components/head :: fragment"></div>
+
+
+<div th:replace="components/header :: fragment"></div>
+<body>
+<div class="container py-3">
+<h2>
+    Employee list
+    <a th:href="@{/employee-form}"
+       class="btn btn-sm btn-success float-end">Add new employee</a>
+</h2>
+<div class="table-responsive table-iteis">
+    <table class="table table-striped table-sm">
+        <thead>
+        <tr>
+            <th scope="col">Employee ID</th>
+            <th scope="col">Username</th>
+            <th scope="col">E-mail</th>
+            <th scope="col">Role</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="employee : ${employees}">
+            <td th:text="${employee.id}">...</td>
+            <td th:text="${employee.username}">...</td>
+            <td th:text="${employee.email}">...</td>
+            <td th:text="${employee.role}">...</td>
+            <td>
+                <a th:href="@{/employee/{id}/(id=${employee.id})}"
+                   class="btn btn-sm btn-success">Details</a>
+            </td>
+            <td>
+                <form th:action="@{/admin/role/{id}/(id=${employee.id})}" method="POST">
+                    <button class="btn btn-sm btn-info" type="submit">Change role</button>
+                </form>
+            </td>
+
+            <td>
+                <form th:action="@{/employees/delete/{id}/(id=${employee.id})}" method="POST">
+                    <button class="btn btn-sm btn-danger" type="submit">Delete</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</main>
+</body>

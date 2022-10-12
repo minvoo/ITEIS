@@ -6,6 +6,8 @@ import com.minvoo.iteis.entity.Role;
 import com.minvoo.iteis.exception.EmployeeNotFoundException;
 import com.minvoo.iteis.mapper.EmployeeMapper;
 import com.minvoo.iteis.repository.EmployeeRepository;
+import com.minvoo.iteis.utils.UuidGenerator;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -15,6 +17,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@Slf4j
 public class EmployeeServiceImpl implements EmployeeService {
 
     @Autowired
@@ -32,8 +35,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public EmployeeDto findById(Long id) {
 
-        Employee employee = employeeRepository.findById(id)
-                .orElseThrow(() -> new EmployeeNotFoundException("User with id " + id + "doesn't exist"));
+        Employee employee = employeeRepository.findById(id).orElseThrow(() -> new EmployeeNotFoundException("User with id " + id + "doesn't exist"));
 
 
         return EmployeeMapper.mapToDto(employee);
@@ -43,6 +45,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     public Employee saveEmployee(Employee employee) {
         employee.setCreateTime(LocalDateTime.now());
         employee.setRole(Role.USER);
+        employee.setUuid(UuidGenerator.generateUuid());
         employee.setPassword(passwordEncoder.encode(employee.getPassword()));
         return employeeRepository.saveAndFlush(employee);
     }
@@ -73,4 +76,26 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     }
 
+    @Override
+    public void changeRole(Long id) {
+
+        EmployeeDto employee = findById(id);
+        String employeeRole = employee.getRole().name();
+
+        if (employeeRole == "USER") {
+            employee.setRole(Role.ADMIN);
+        } else {
+            employee.setRole(Role.USER);
+        }
+        log.info("User role changed to: " + employee.getRole().name());
+        Employee employeeUpdated = EmployeeMapper.mapToEntity(employee);
+        employeeRepository.saveAndFlush(employeeUpdated);
+        log.info("User" + employeeUpdated.toString());
+
+    }
+
+    @Override
+    public Optional<Employee> findByUuid(String uuid) {
+        return employeeRepository.findByUuid(uuid);
+    }
 }

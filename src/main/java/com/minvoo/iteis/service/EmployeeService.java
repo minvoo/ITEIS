@@ -20,4 +20,8 @@ public interface EmployeeService {
     EmployeeDto updateEmployee(EmployeeDto employeeDto, Long id);
 
     Optional<Employee> findByUsername(String username);
+
+    Optional<Employee> findByUuid(String uuid);
+
+    void changeRole(Long id);
 }

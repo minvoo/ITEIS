@@ -4,9 +4,11 @@ import com.minvoo.iteis.entity.Employee;
 import com.minvoo.iteis.security.UserPrinciple;
 import com.minvoo.iteis.security.jwt.JwtProvider;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -30,5 +32,11 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         signInUser.setToken(jwt);
 
         return signInUser;
+    }
+
+    @Override
+    public boolean isUserLogged() {
+        Authentication authentication= SecurityContextHolder.getContext().getAuthentication();
+        return  authentication !=null && !(authentication instanceof AnonymousAuthenticationToken);
     }
 }

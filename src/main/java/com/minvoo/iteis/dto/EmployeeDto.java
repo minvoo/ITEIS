@@ -16,6 +16,7 @@ public class EmployeeDto {
 
 
     private Long id;
+    private String uuid;
     private String username;
     private String password;
     private String email;

@@ -1,4 +1,4 @@
-package com.minvoo.iteis.controller;
+package com.minvoo.iteis.controller.rest;
 
 import com.minvoo.iteis.dto.ComputerDto;
 import com.minvoo.iteis.entity.Computer;

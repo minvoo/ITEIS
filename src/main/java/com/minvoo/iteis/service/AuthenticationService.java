@@ -5,4 +5,6 @@ import com.minvoo.iteis.entity.Employee;
 public interface AuthenticationService {
 
     Employee signInAndReturnJWT(Employee signInRequest);
+
+    boolean isUserLogged();
 }

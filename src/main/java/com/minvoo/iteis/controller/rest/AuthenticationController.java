@@ -1,5 +1,6 @@
-package com.minvoo.iteis.entity;
+package com.minvoo.iteis.controller.rest;
 
+import com.minvoo.iteis.entity.Employee;
 import com.minvoo.iteis.service.AuthenticationService;
 import com.minvoo.iteis.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
