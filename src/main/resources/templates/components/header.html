@@ -1,35 +1,32 @@
-<header th:fragment="fragment" xmlns:sec="http://www.w3.org/1999/xhtml">
-    <div class="container py-3">
-        <div class="d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom">
-            <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
+<div th:fragment="fragment" class="header" id="header_id" xmlns:sec="http://www.w3.org/1999/xhtml">
+<div class="logo"></div>
+<div class="nav1">
+    <a th:href="${@environment.getProperty('app.main.url')}">ITEIS</a>
+    <span class="nav1-span-link" sec:authorize="isAuthenticated()">
+        <a href="/employees/profile">My profile</a>
+    </span>
+</div>
+<div class="nav2">
+    <span sec:authorize="isAuthenticated()">
+    <a href="/computers/">My computers</a>
+    <a href="/printers">My printers</a>
+    </span>
+</div>
+<div class="login">
 
-                <a class="me-3 py-2 text-dark text-decoration-none nav-elements-padding"
-                   th:href="${@environment.getProperty('app.main.url')}">ITEIS</a></span>
-                    <span sec:authorize="isAnonymous()"><a
-                            class="me-3 py-2 text-dark text-decoration-none nav-elements-padding"
-                            href="/login">Login</a>
-                    <a class="me-3 py-2 text-dark text-decoration-none nav-elements-padding"
-                       href="/authentication/sign-up">Register</a></span>
-
-                <span sec:authorize="isAuthenticated()">
-                    <a class="me-3 py-2 text-dark text-decoration-none nav-elements-padding" href="/computers/list">Computers</a>
-                    <a class="me-3 py-2 text-dark text-decoration-none nav-elements-padding"
-                       href="/printers/list">Printers</a>
-                    <a class="me-3 py-2 text-dark text-decoration-none nav-elements-padding" href="/mobiles/list">Mobiles</a>
-                    </span>
-                <a class="me-3 py-2 text-dark text-decoration-none nav-elements-padding" href="/employees/list">User
-                    list</a>
-                </span>
-                <span sec:authorize="isAuthenticated()">
-                        <a class="me-3 py-2 text-dark text-decoration-none nav-elements-padding"
-                           href="/employees/profile">My profile</a>
-
-
-                <form name="logoutForm" th:hidden="true" method="post" th:action="@{/logout}"
-                      th:object="${user}" class="py-2 text-dark text-decoration-none nav-elements-padding">
-                    <input type="submit" value="Logout">
-                </form>
-                <a href="javascript: logoutForm.submit();" class="btn header-btn">Log out</a></span>
-            </nav>
-            -->
-</header>
+    <span sec:authorize="isAnonymous()">
+    <a href="/login">Login</a>
+        <a href="/authentication/sign-up">Register</a>
+    </span>
+    <span sec:authorize="hasRole('ADMIN')">
+        <a href="/employees/list">Employees List</a>
+    </span>
+    <span sec:authorize="isAuthenticated()">
+    <form name="logoutForm" th:hidden="true" method="post" th:action="@{/logout}"
+          th:object="${user}">
+        <input type="submit" value="Logout">
+    </form>
+    <a href="javascript: logoutForm.submit();" class="btn header-btn">Log out</a>
+    </span>>
+</div>
+</div>

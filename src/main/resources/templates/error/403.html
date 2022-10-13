@@ -1,12 +1,9 @@
-<!doctype html>
-<html class="no-js" lang="EN">
 
-<!-- head -->
 <div th:replace="/components/head :: fragment"></div>
-<div th:replace="/components/header :: fragment"></div>
-
+<div th:replace="/components/header_old :: fragment"></div>
+<div class="cont">
 <div class="text-wrapper">
-  <div class="title" data-content="404">
+  <div class="title-error" data-content="404">
     403 - ACCESS DENIED
   </div>
 
@@ -16,8 +13,7 @@
   <div class="isi">
     A web server may return a 403 Forbidden HTTP status code in response to a request from a client for a web page or resource to indicate that the server can be reached and understood the request, but refuses to take any further action. Status code 403 responses are the result of the web server being configured to deny access, for some reason, to the requested resource by the client.
   </div>
-
-  <div class="buttons">
-    <a class="button" href="/">Go to homepage</a>
-  </div>
 </div>
+</div>
+
+<div th:replace="components/footer :: fragment"></div>

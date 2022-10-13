@@ -1,107 +1,23 @@
-<!doctype html>
-<html class="no-js" lang="EN">
+<div th:replace="components/head :: fragment"></div>
 
-<!-- head -->
-<div th:replace="/components/head :: fragment"></div>
-<div th:replace="/components/header :: fragment"></div>
 <body>
+<div class="cont">
+    <div class="title">
+        <span class="title_text_main">
+            Register
+        </span>
+        <span class="title_text_sub">
+            Use the form below to login.
+        </span>
+    </div>
+    <div class="fill">
 
-<h2>
-    Register to the app.
-</h2>
-
-<form name="registerFrm"
-      th:action="@{/authentication/sign-up}" method="post"
-      style="max-width: 600px; margin: 0 auto; background-color: white; border-radius: 20px;
-      margin-top: 20px;"
-      th:object="${user}">
-
-    <div th:if="${errorMsg != null}">
-        <div class="alert alert-info">
-            <span th:text="${errorMsg}">Error message.</span>
-        </div>
+          <div th:replace="/authentication/register-form :: fragment">
     </div>
 
-    <div class="p-3">
-        <div class="form-group row">
-            <label class="col-4 col-form-label">Username</label>
-            <div class="col-8">
-                <input type="text" class="form-control" th:field="*{username}" required
-                       placeholder="enter your username"/>
-            </div>
-        </div>
-        <br>
-        <div class="form-group row">
-            <label class="col-4 col-form-label">E-mail</label>
-            <div class="col-8">
-                <input type="email" class="form-control" th:field="*{email}" required
-                       placeholder="enter your e-mail"/>
-            </div>
-        </div>
-        <br>
-        <div class="form-group row">
-            <label class="col-4 col-form-label control-label">Password </label>
-            <div class="col-8">
-                <input type="password" name="password" class="form-control" id="password"
-                       oninput="check()"
-                       th:field="*{password}" required minlength="8" maxlength="30"
-                       placeholder="enter your password"/>
-            </div>
-        </div>
-        <br>
-
-        <div class="form-group row">
-            <label class="col-4 col-form-label control-label">Confirm password: </label>
-            <div class="col-8">
-                <input type="password" name="confirmPassword" class="form-control"
-                       id="confirmPassword"
-                       oninput="check()"
-                       required minlength="8" maxlength="30"
-                       placeholder="confirm your password"/>
-
-            </div>
-        </div>
-        <br>
-        <div class="form-group row">
-            <label class="col-4 col-form-label">First name</label>
-            <div class="col-8">
-                <input type="text" class="form-control" th:field="*{firstName}" required
-                       minlength="2" maxlength="20" placeholder="enter your first name"/>
-            </div>
-        </div>
-        <br>
-        <div class="form-group row">
-            <label class="col-4 col-form-label">Last name</label>
-            <div class="col-8">
-                <input type="text" class="form-control" th:field="*{lastName}" required
-                       minlength="2" maxlength="20" placeholder="enter your last name"/>
-            </div>
-        </div>
-
-        <div class="form-group row">
-            <label class="col-4 col-form-label">Position</label>
-            <div class="col-8">
-                <input type="text" class="form-control" th:field="*{position}" required
-                       minlength="2" maxlength="30" placeholder="enter your position"/>
-            </div>
-        </div>
-        <br>
-        <span style="margin-left: auto; margin-right: auto; text-align: center;">
-                                <div>
-                                    <button id="submitBtn" type="submit" class="btn btn-primary mt-2">Register</button>
-                                    <a id="backBtn" th:href="@{/}" type="button" class="btn btn-secondary mt-2">Go
-                                        back</a>
-                                </div>
-
-                                <div>
-                                    <p style="margin-top: 10px;">Already have an account? Click <a th:href="@{/authentication/sign-in}"
-                                                                                                   style="color: #0b1c39">here</a>
-                                        to log in.
-                                    </p>
-                                </div>
-</span>
-    </div>
-</form>
-<script src="/assets/js/passwordConfirmationChecker.js"></script>
+</div>
+</div>
 </body>
+<div th:replace="components/footer :: fragment"></div>
 
+<script src="/assets/js/passwordConfirmationChecker.js"></script>
