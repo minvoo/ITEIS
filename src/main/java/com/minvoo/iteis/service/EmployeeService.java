@@ -3,6 +3,7 @@ package com.minvoo.iteis.service;
 
 import com.minvoo.iteis.dto.EmployeeDto;
 import com.minvoo.iteis.entity.Employee;
+import org.springframework.security.core.Authentication;
 
 import java.util.List;
 import java.util.Optional;
@@ -24,4 +25,6 @@ public interface EmployeeService {
     Optional<Employee> findByUuid(String uuid);
 
     void changeRole(Long id);
+
+    void deleteById(Long id, Authentication authentication);
 }

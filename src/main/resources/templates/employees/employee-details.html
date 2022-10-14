@@ -1,0 +1,29 @@
+<div th:replace="components/head :: fragment"></div>
+<div th:replace="components/header:: fragment"></div>
+<body>
+
+<div class="cont">
+    <div class="title">
+        <span class="title_text_main">
+             Employee details
+        </span>
+        <span class="title_text_sub">
+                <span>
+                    Check details about  <b><span th:text="${employee.firstName}"></span> <span th:text="${employee.lastName}"></span></b>
+                </span>
+        </span>
+    </div>
+    <div class="fill-emp">
+    <div class="emp-info">
+    <p><b>Employee id: </b><span th:text="${employee.id}" /></p>
+    <p><b>First name: </b><span th:text="${employee.firstName}" /></p>
+    <p><b>Last name: </b><span th:text="${employee.lastName}" /></p>
+    <p><b>Employe role: </b><span th:text="${employee.Role}" /></p>
+        <p><b>Created on: </b><span th:text="${employee.createTime}" /></p>
+        <p><b>Position: </b><span th:text="${employee.position}" /></p>
+        <p><b>Position: </b><span th:text="${employee.position}" /></p>
+    </div>
+    </div>
+</div>
+</body>
+<div th:replace="components/footer:: fragment"></div>

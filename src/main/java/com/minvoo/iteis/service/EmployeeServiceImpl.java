@@ -9,6 +9,7 @@ import com.minvoo.iteis.repository.EmployeeRepository;
 import com.minvoo.iteis.utils.UuidGenerator;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -67,6 +68,17 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public void deleteById(Long id) {
         employeeRepository.deleteById(id);
+    }
+
+    @Override
+    public void deleteById(Long id, Authentication authentication) {
+        String empName = authentication.getName();
+        Optional<Employee> employeeOptional = findByUsername(empName);
+        Employee employee = employeeOptional.get();
+
+        if (employee.getId() != id) {
+            deleteById(id);
+        }
     }
 
     @Override

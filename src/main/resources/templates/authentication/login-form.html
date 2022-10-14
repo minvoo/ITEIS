@@ -1,5 +1,5 @@
 <form th:fragment="fragment" th:action="@{/login}" method="post"
-      style="max-width: 600px; margin: 0 auto;"
+      style="max-width: 600px; margin: 0 auto; overflow: hidden"
       th:object="${user}">
 
   <div th:if="${param.error}">

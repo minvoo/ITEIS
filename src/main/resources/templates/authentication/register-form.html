@@ -77,7 +77,7 @@
                                 </div>
 
                                 <div>
-                                    <p style="margin-top: 10px;">Already have an account? Click <a th:href="@{/authentication/sign-in}"
+                                    <p sec:authorize="isAnonymous()" style="margin-top: 10px;">Already have an account? Click <a th:href="@{/authentication/sign-in}"
                                                                                                    class="a-home">here</a>
                                          to log in.
                                     </p>

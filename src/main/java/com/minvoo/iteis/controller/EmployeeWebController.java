@@ -38,9 +38,11 @@ public class EmployeeWebController {
         return "/employees/employee-details.html";
     }
 
+
     @PostMapping("/delete/{id}")
-    public String deleteEmployee(@PathVariable("id") Long id) {
-        employeeService.deleteById(id);
+    public String deleteEmployee(@PathVariable("id") Long id,
+                                 Authentication authentication) {
+        employeeService.deleteById(id, authentication);
         return "redirect:/employees/list";
     }
 
@@ -51,7 +53,6 @@ public class EmployeeWebController {
 
         Optional<Employee> employeeOptional = employeeService.findByUsername(authentication.getName());
         Employee employee = employeeOptional.get();
-        log.info("Current user: " + employee.toString());
         model.addAttribute("employee", employee);
         return "/employees/profile.html";
     }

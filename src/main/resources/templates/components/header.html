@@ -1,32 +1,28 @@
 <div th:fragment="fragment" class="header" id="header_id" xmlns:sec="http://www.w3.org/1999/xhtml">
 <div class="logo"></div>
 <div class="nav1">
-    <a th:href="${@environment.getProperty('app.main.url')}">ITEIS</a>
+    <a href="/">ITEIS</a>
     <span class="nav1-span-link" sec:authorize="isAuthenticated()">
         <a href="/employees/profile">My profile</a>
     </span>
 </div>
-<div class="nav2">
-    <span sec:authorize="isAuthenticated()">
-    <a href="/computers/">My computers</a>
-    <a href="/printers">My printers</a>
-    </span>
-</div>
 <div class="login">
-
-    <span sec:authorize="isAnonymous()">
-    <a href="/login">Login</a>
+    <span class="auth-span" sec:authorize="isAnonymous()">
+        <a href="/login">Login</a>
+        <a href="/authentication/sign-up">Register</a>
+        <a href="/authentication/sign-up">Register</a>
+        <a href="/authentication/sign-up">Register</a>
         <a href="/authentication/sign-up">Register</a>
     </span>
-    <span sec:authorize="hasRole('ADMIN')">
+    <span class="auth-span" sec:authorize="hasRole('ADMIN')">
         <a href="/employees/list">Employees List</a>
     </span>
-    <span sec:authorize="isAuthenticated()">
-    <form name="logoutForm" th:hidden="true" method="post" th:action="@{/logout}"
+    <span class="auth-span" sec:authorize="isAuthenticated()">
+        <form name="logoutForm" th:hidden="true" method="post" th:action="@{/logout}"
           th:object="${user}">
-        <input type="submit" value="Logout">
-    </form>
-    <a href="javascript: logoutForm.submit();" class="btn header-btn">Log out</a>
+            <input type="submit" value="Logout">
+        </form>
+        <a href="javascript: logoutForm.submit();" class="btn header-btn">Log out</a>
     </span>>
 </div>
 </div>
