@@ -55,16 +55,32 @@ public class EmployeeServiceImpl implements EmployeeService {
     public EmployeeDto updateEmployee(EmployeeDto employeeDto, Long id) {
 
         Employee employee = employeeRepository.getById(id);
-
+        log.info("Employee before change" + employee.toString());
+        log.info("Employee password before " + employee.getPassword());
+        log.info("DTO password " + employeeDto.getPassword());
         employee.setPassword(employeeDto.getPassword());
+        log.info("Employee password after " + employee.getPassword());
         employee.setFirstName(employeeDto.getFirstName());
         employee.setPosition(employeeDto.getPosition());
         employee.setLastName(employeeDto.getLastName());
+        employee.setPassword(employeeDto.getPassword());
+        log.info("Employee after change" + employee.toString());
 
-        employeeRepository.saveAndFlush(employee);
-        return EmployeeMapper.mapToDto(employee);
+        Employee employeeUpdated = employeeRepository.saveAndFlush(employee);
+        log.info(employeeUpdated.toString());
+        return EmployeeMapper.mapToDto(employeeUpdated);
     }
 
+    @Override
+    public EmployeeDto changePassword(EmployeeDto employeeDto, Long id) {
+
+        Employee emp = employeeRepository.getById(id);
+
+        Employee empUpdate = emp.setPassword(passwordEncoder.encode(employeeDto.getPassword()));
+        Employee empInDb = employeeRepository.saveAndFlush(empUpdate);
+        return EmployeeMapper.mapToDto(empInDb);
+
+    }
     @Override
     public void deleteById(Long id) {
         employeeRepository.deleteById(id);

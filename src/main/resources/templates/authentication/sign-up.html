@@ -1,10 +1,11 @@
-<div th:replace="components/head :: fragment"></div>
+<div th:replace="components/head :: fragment" xmlns:sec="http://www.w3.org/1999/xhtml"></div>
 <div th:replace="components/header :: fragment"></div>
 <body>
 <div class="cont">
     <div class="title">
         <span class="title_text_main">
-            Register
+            <span sec:authorize="isAuthenticated()">Add new employee</span>
+            <span sec:authorize="isAnonymous()">Register</span>
         </span>
         <span class="title_text_sub">
             Use the form below to login.

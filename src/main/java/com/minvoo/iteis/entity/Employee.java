@@ -8,13 +8,15 @@ import lombok.NonNull;
 import lombok.experimental.Accessors;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "employees", uniqueConstraints = {@UniqueConstraint(columnNames = {"username"}),
+@Table(name = "employees", uniqueConstraints = {
+        @UniqueConstraint(columnNames = {"username"}),
         @UniqueConstraint(columnNames = {"email"})})
 @Accessors(chain = true, fluent = false)
 public class Employee {
@@ -32,13 +34,14 @@ public class Employee {
 
     @Column(name = "password", nullable = false)
     @NonNull
+    @Size(min = 8, message = "Password must have at least 8 characters")
     private String password;
 
     @Column(name = "email", nullable = false)
     @NonNull
     private String email;
 
-    @Column(name = "first_name" )
+    @Column(name = "first_name")
     private String firstName;
 
     @Column(name = "last_Name")

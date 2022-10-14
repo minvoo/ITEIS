@@ -21,7 +21,8 @@
     <p><b>Employe role: </b><span th:text="${employee.Role}" /></p>
         <p><b>Created on: </b><span th:text="${employee.createTime}" /></p>
         <p><b>Position: </b><span th:text="${employee.position}" /></p>
-        <p><b>Position: </b><span th:text="${employee.position}" /></p>
+        <a th:href="@{/employees/details/{id}/(id=${employee.id})}" class="btn btn-primary mb-2">Change details</a>
+        <a href="/employees/list" class="btn btn-info">Go back</a>
     </div>
     </div>
 </div>

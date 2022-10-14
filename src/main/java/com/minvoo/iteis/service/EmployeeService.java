@@ -16,6 +16,8 @@ public interface EmployeeService {
 
     Employee saveEmployee(Employee employee);
 
+    EmployeeDto changePassword(EmployeeDto employeeDto, Long id);
+
     void deleteById(Long id);
 
     EmployeeDto updateEmployee(EmployeeDto employeeDto, Long id);

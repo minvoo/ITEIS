@@ -1,8 +1,10 @@
 package com.minvoo.iteis.service;
 
 import com.minvoo.iteis.entity.Employee;
+import com.minvoo.iteis.entity.Role;
 import com.minvoo.iteis.security.UserPrinciple;
 import com.minvoo.iteis.security.jwt.JwtProvider;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -11,11 +13,16 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
+@Slf4j
 public class AuthenticationServiceImpl implements AuthenticationService {
     @Autowired
     private AuthenticationManager authenticationManager;
 
+    @Autowired
+    private EmployeeService employeeService;
     @Autowired
     private JwtProvider jwtProvider;
 
@@ -34,6 +41,21 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         return signInUser;
     }
 
+    @Override
+    public boolean isLoggedUserIsAdmin() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String currentUserName = auth.getName();
+        Optional<Employee> currentUserEntityOptional = employeeService.findByUsername(currentUserName);
+        Employee currentUserEntity = currentUserEntityOptional.get();
+        log.info("is user logged is admin : " + currentUserEntity.toString());
+        if(currentUserEntity.getRole().equals(Role.ADMIN)) {
+            log.info("true");
+            return true;
+        } else {
+            log.info("false");
+            return false;
+        }
+    }
     @Override
     public boolean isUserLogged() {
         Authentication authentication= SecurityContextHolder.getContext().getAuthentication();

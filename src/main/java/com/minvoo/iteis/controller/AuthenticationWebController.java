@@ -26,7 +26,7 @@ public class AuthenticationWebController {
 
     @GetMapping("/sign-up") //authentication/sign-up
     public String getsignUpPage(Model model) {
-        if (authenticationService.isUserLogged()) {
+        if (authenticationService.isUserLogged() && !authenticationService.isLoggedUserIsAdmin()) {
             return "redirect:/";
         }
         model.addAttribute("signup", new EmployeeDto());
@@ -36,7 +36,7 @@ public class AuthenticationWebController {
 
     @PostMapping("/sign-up")
     public String processRegister(Employee employee, Model model) {
-        if (authenticationService.isUserLogged()) {
+        if (authenticationService.isUserLogged() && !authenticationService.isLoggedUserIsAdmin()) {
             return "redirect:/";
         }
 
@@ -51,6 +51,9 @@ public class AuthenticationWebController {
         return "authentication/sign-up.html";
         }
         model.addAttribute("user", new EmployeeDto());
+        if (authenticationService.isLoggedUserIsAdmin()) {
+            return "redirect:/employees/list";
+        }
         return "authentication/sign-up-success.html";
     }
 

@@ -11,8 +11,13 @@
 Use the form below to login.
             </span>
   </div>
+    <span sec:authorize="isAnonymous()">
 <div class="alert alert-info">You have signed up successfully! You can now login through the
   form below.
+</div>
+    </span>
+    <span sec:authorize="isAuthenticated()">
+        <div class="alert alert-info">Adding new employee success!
 </div>
   <div class="fill">
       <form th:replace="/authentication/login-form :: fragment">...</form>
