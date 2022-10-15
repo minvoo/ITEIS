@@ -4,6 +4,7 @@ import com.minvoo.iteis.dto.EmployeeDto;
 import com.minvoo.iteis.entity.Employee;
 import com.minvoo.iteis.mapper.EmployeeMapper;
 import com.minvoo.iteis.service.EmployeeService;
+import com.minvoo.iteis.utils.CurrentUserUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -23,6 +24,8 @@ public class EmployeeWebController {
 
     @Autowired
     private EmployeeService employeeService;
+    @Autowired
+    private CurrentUserUtils currentUserUtils;
 
     @GetMapping(ELEMENTS_LIST_WEB_PATH) // /employee/list
     public String getAllEmployees(Model model) {
@@ -45,7 +48,7 @@ public class EmployeeWebController {
     public String getProfilePage(Authentication authentication,
                                     Model model) {
 
-        Employee employee = getCurrentUser(authentication);
+        Employee employee = currentUserUtils.getCurrentUser(authentication);
         model.addAttribute("employee", employee);
         return "/employees/employee-profile.html";
     }
@@ -53,7 +56,7 @@ public class EmployeeWebController {
     public String getPasswordChangePage(Authentication authentication,
                                         Model model) {
 
-        Employee currentUser = getCurrentUser(authentication);
+        Employee currentUser = currentUserUtils.getCurrentUser(authentication);
         EmployeeDto employeeDto = EmployeeMapper.mapToDto(currentUser);
         model.addAttribute("employee", employeeDto);
         return "employees/employee-change-password.html";
@@ -62,7 +65,7 @@ public class EmployeeWebController {
     @PostMapping(EMPLOYEE_PROFILE_PASSWORD_CHANGE_PATH)
         public String changePassword(Authentication authentication,
                                      @ModelAttribute EmployeeDto employeeDto) {
-        Employee emp = getCurrentUser(authentication);
+        Employee emp = currentUserUtils.getCurrentUser(authentication);
         employeeService.changePassword(employeeDto, employeeDto.getId());
         return "redirect:/employees"+EMPLOYEE_PROFILE_PATH;
     }
@@ -78,9 +81,5 @@ public class EmployeeWebController {
         employeeService.updateEmployee(employeeDto, employeeDto.getId());
         return "redirect:/employees"+ELEMENTS_LIST_WEB_PATH;
     }
-    private Employee getCurrentUser(Authentication authentication) {
-        Optional<Employee> employeeOptional = employeeService.findByUsername(authentication.getName());
-        Employee employee = employeeOptional.get();
-        return employee;
-    }
+
 }

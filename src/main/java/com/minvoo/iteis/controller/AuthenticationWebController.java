@@ -20,7 +20,7 @@ public class AuthenticationWebController {
     private EmployeeService employeeService;
 
     @GetMapping("/sign-up") //authentication/sign-up
-    public String getsignUpPage(Model model) {
+    public String getSignUpPage(Model model) {
         if (authenticationService.isUserLogged() && !authenticationService.isLoggedUserIsAdmin()) {
             return "redirect:/";
         }
