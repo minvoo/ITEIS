@@ -53,7 +53,7 @@ public class PrinterWebController {
 
 
     @GetMapping("/printers/change/{id}")
-    public String addPrinterPage(@PathVariable("id") Long id,
+    public String changePrinterDetails(@PathVariable("id") Long id,
                                  Model model) {
 
         List<EmployeeDto> allEmployees = employeeService.getAllEmployees();
