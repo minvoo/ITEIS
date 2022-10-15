@@ -13,48 +13,35 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 
+import static com.minvoo.iteis.common.PageMappingInfo.EMPLOYEES_API_PATH;
+
 @RestController
-@RequestMapping("/api/employees")
+@RequestMapping(EMPLOYEES_API_PATH)
 public class EmployeeController {
 
     @Autowired
     private EmployeeService employeeService;
-
     @GetMapping("/list")
     public ResponseEntity<?> getAllEmployees() {
         return new ResponseEntity<>(employeeService.getAllEmployees(), HttpStatus.OK);
     }
-
-    //for admins
-    @GetMapping("/{id}")
+    @GetMapping("details/{id}")
     public ResponseEntity<?> getEmployee(@PathVariable Long id) {
         return new ResponseEntity<>(employeeService.findById(id), HttpStatus.OK);
     }
-
     @PostMapping // /api/employee
     public ResponseEntity<?> saveEmployee(@RequestBody Employee employee) {
         return new ResponseEntity<>(employeeService.saveEmployee(employee), HttpStatus.CREATED);
     }
-
-    @PutMapping("/{id}")
+    @PutMapping("details/change/{id}")
     public ResponseEntity<?> updateEmployee(@PathVariable Long id,
                                             @RequestBody EmployeeDto employeeDto) {
         EmployeeDto employeeResponse = employeeService.updateEmployee(employeeDto, id);
         return new ResponseEntity<>(employeeResponse, HttpStatus.OK);
     }
-
-
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> deleteEmployee(@PathVariable Long id) {
         employeeService.deleteById(id);
         return new ResponseEntity<>(HttpStatus.OK);
-    }
-
-    //for users
-    @GetMapping("/profile/{uuid}")
-    public ResponseEntity<?> getEmployeeDetails(@PathVariable(name = "uuid") String uuid,
-                                                @AuthenticationPrincipal UserPrinciple userPrinciple) {
-
-        return new ResponseEntity<>(employeeService.findByUuid(uuid), HttpStatus.OK);
     }
 }

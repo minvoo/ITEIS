@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class EmployeeMapper {
-
     public static EmployeeDto mapToDto(Employee employee) {
         return new EmployeeDto().toBuilder()
                 .id(employee.getId())
@@ -23,13 +22,11 @@ public class EmployeeMapper {
 //                .computers(employee.getComputers())
                 .build();
     }
-
     public static List<EmployeeDto> mapToDto(List<Employee> employees) {
         return employees.stream()
                 .map(EmployeeMapper::mapToDto)
                 .collect(Collectors.toList());
     }
-
     public static Employee mapToEntity(EmployeeDto employee) {
         return new Employee()
                 .setId(employee.getId())

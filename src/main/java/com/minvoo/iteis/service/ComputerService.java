@@ -7,12 +7,8 @@ import java.util.List;
 
 public interface ComputerService {
     List<ComputerDto> getAllComputers();
-
     ComputerDto findById(Long id);
-
     Computer saveComputer(Computer computer, Long employeeId);
-
     void deleteById(Long id);
-
     ComputerDto updateComputer(ComputerDto computerDto, Long id);
 }

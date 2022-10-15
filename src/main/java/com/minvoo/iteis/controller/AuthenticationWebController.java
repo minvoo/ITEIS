@@ -5,14 +5,10 @@ import com.minvoo.iteis.entity.Employee;
 import com.minvoo.iteis.service.AuthenticationService;
 import com.minvoo.iteis.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -20,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class AuthenticationWebController {
     @Autowired
     private AuthenticationService authenticationService;
-
     @Autowired
     private EmployeeService employeeService;
 
@@ -39,7 +34,6 @@ public class AuthenticationWebController {
         if (authenticationService.isUserLogged() && !authenticationService.isLoggedUserIsAdmin()) {
             return "redirect:/";
         }
-
         try {
             employeeService.saveEmployee(employee);
             model.addAttribute("errorMsg", null);
@@ -48,13 +42,13 @@ public class AuthenticationWebController {
                     "already exist");
             model.addAttribute("signup", new EmployeeDto());
             model.addAttribute("user", new EmployeeDto());
-        return "authentication/sign-up.html";
+            return "authentication/sign-up.html";
         }
         model.addAttribute("user", new EmployeeDto());
         if (authenticationService.isLoggedUserIsAdmin()) {
             return "redirect:/employees/list";
         }
-        return "authentication/sign-up-success.html";
+        return "redirect:/";
     }
 
 }

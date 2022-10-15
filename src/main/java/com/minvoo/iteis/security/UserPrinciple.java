@@ -17,6 +17,7 @@ import java.util.Set;
 @AllArgsConstructor
 @Builder
 public class UserPrinciple implements UserDetails {
+
     private Long id;
     private String username;
     transient private String password;

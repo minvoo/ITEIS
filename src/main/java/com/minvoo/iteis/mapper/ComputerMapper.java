@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class ComputerMapper {
-
     public static ComputerDto mapToDto(Computer computer) {
 
         return new ComputerDto()
@@ -24,7 +23,6 @@ public class ComputerMapper {
                 .setOfficeVersion(computer.getOfficeVersion())
                 .setOperatingSystem(computer.getOperatingSystem());
     }
-
     public static List<ComputerDto> mapToDto(List<Computer> computers) {
 
         return computers.stream()

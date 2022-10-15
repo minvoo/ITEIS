@@ -15,7 +15,6 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
 
     @Autowired
     private JwtProvider jwtProvider;
-
     @Override
     protected void doFilterInternal(HttpServletRequest request,
                                     HttpServletResponse response,
@@ -23,7 +22,6 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
             throws ServletException, IOException {
 
         Authentication authentication = jwtProvider.getAuthentication(request);
-
         if (authentication != null && jwtProvider.isTokenValid(request)) {
             SecurityContextHolder.getContext().setAuthentication(authentication);
         }

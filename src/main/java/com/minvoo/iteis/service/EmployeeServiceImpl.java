@@ -28,17 +28,14 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public List<EmployeeDto> getAllEmployees() {
-
         List<Employee> employees = employeeRepository.findAll();
         return EmployeeMapper.mapToDto(employees);
     }
 
     @Override
     public EmployeeDto findById(Long id) {
-
-        Employee employee = employeeRepository.findById(id).orElseThrow(() -> new EmployeeNotFoundException("User with id " + id + "doesn't exist"));
-
-
+        Employee employee = employeeRepository.findById(id).orElseThrow(
+                () -> new EmployeeNotFoundException("User with id " + id + "doesn't exist"));
         return EmployeeMapper.mapToDto(employee);
     }
 
@@ -53,18 +50,11 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public EmployeeDto updateEmployee(EmployeeDto employeeDto, Long id) {
-
         Employee employee = employeeRepository.getById(id);
-        log.info("Employee before change" + employee.toString());
-        log.info("Employee password before " + employee.getPassword());
-        log.info("DTO password " + employeeDto.getPassword());
-        employee.setPassword(employeeDto.getPassword());
-        log.info("Employee password after " + employee.getPassword());
+        employee.setPassword(passwordEncoder.encode(employeeDto.getPassword()));
         employee.setFirstName(employeeDto.getFirstName());
         employee.setPosition(employeeDto.getPosition());
         employee.setLastName(employeeDto.getLastName());
-        employee.setPassword(employeeDto.getPassword());
-        log.info("Employee after change" + employee.toString());
 
         Employee employeeUpdated = employeeRepository.saveAndFlush(employee);
         log.info(employeeUpdated.toString());
@@ -73,14 +63,13 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public EmployeeDto changePassword(EmployeeDto employeeDto, Long id) {
-
         Employee emp = employeeRepository.getById(id);
-
         Employee empUpdate = emp.setPassword(passwordEncoder.encode(employeeDto.getPassword()));
         Employee empInDb = employeeRepository.saveAndFlush(empUpdate);
         return EmployeeMapper.mapToDto(empInDb);
 
     }
+
     @Override
     public void deleteById(Long id) {
         employeeRepository.deleteById(id);
@@ -91,7 +80,6 @@ public class EmployeeServiceImpl implements EmployeeService {
         String empName = authentication.getName();
         Optional<Employee> employeeOptional = findByUsername(empName);
         Employee employee = employeeOptional.get();
-
         if (employee.getId() != id) {
             deleteById(id);
         }
@@ -99,31 +87,20 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Optional<Employee> findByUsername(String username) {
-
         return employeeRepository.findByUsername(username);
 
     }
 
     @Override
     public void changeRole(Long id) {
-
         EmployeeDto employee = findById(id);
         String employeeRole = employee.getRole().name();
-
         if (employeeRole == "USER") {
             employee.setRole(Role.ADMIN);
         } else {
             employee.setRole(Role.USER);
         }
-        log.info("User role changed to: " + employee.getRole().name());
         Employee employeeUpdated = EmployeeMapper.mapToEntity(employee);
         employeeRepository.saveAndFlush(employeeUpdated);
-        log.info("User" + employeeUpdated.toString());
-
-    }
-
-    @Override
-    public Optional<Employee> findByUuid(String uuid) {
-        return employeeRepository.findByUuid(uuid);
     }
 }

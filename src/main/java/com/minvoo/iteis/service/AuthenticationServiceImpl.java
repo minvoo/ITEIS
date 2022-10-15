@@ -20,7 +20,6 @@ import java.util.Optional;
 public class AuthenticationServiceImpl implements AuthenticationService {
     @Autowired
     private AuthenticationManager authenticationManager;
-
     @Autowired
     private EmployeeService employeeService;
     @Autowired
@@ -46,19 +45,20 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String currentUserName = auth.getName();
         Optional<Employee> currentUserEntityOptional = employeeService.findByUsername(currentUserName);
-        Employee currentUserEntity = currentUserEntityOptional.get();
-        log.info("is user logged is admin : " + currentUserEntity.toString());
-        if(currentUserEntity.getRole().equals(Role.ADMIN)) {
-            log.info("true");
-            return true;
+        if (currentUserEntityOptional.isPresent()) {
+            Employee currentUserEntity = currentUserEntityOptional.get();
+            if (currentUserEntity.getRole().equals(Role.ADMIN)) {
+                return true;
+            } else {
+                return false;
+            }
         } else {
-            log.info("false");
             return false;
         }
     }
-    @Override
-    public boolean isUserLogged() {
-        Authentication authentication= SecurityContextHolder.getContext().getAuthentication();
-        return  authentication !=null && !(authentication instanceof AnonymousAuthenticationToken);
+        @Override
+        public boolean isUserLogged () {
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            return authentication != null && !(authentication instanceof AnonymousAuthenticationToken);
+        }
     }
-}

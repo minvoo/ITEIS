@@ -27,10 +27,8 @@ public class JwtProviderImpl implements JwtProvider {
 
     @Value("${app.jwt.secret.key}")
     private String JWT_SECRET_KEY;
-
     @Value("${app.jwt.expiration-in-ms}")
     private Long JWT_EXPIRATION_IN_MS;
-
 
     @Override
     public String generateToken(UserPrinciple auth) {
@@ -40,7 +38,6 @@ public class JwtProviderImpl implements JwtProvider {
                 .collect(Collectors.joining(","));
 
         Key key = Keys.hmacShaKeyFor(JWT_SECRET_KEY.getBytes(StandardCharsets.UTF_8));
-
         return Jwts.builder()
                 .setSubject(auth.getUsername())
                 .claim("roles", authorities)
@@ -50,7 +47,6 @@ public class JwtProviderImpl implements JwtProvider {
                 .compact();
 
     }
-
     @Override
     public Authentication getAuthentication(HttpServletRequest request) {
 
@@ -58,7 +54,6 @@ public class JwtProviderImpl implements JwtProvider {
         if (claims == null) {
             return null;
         }
-
         String username = claims.getSubject();
         Long userId = claims.get("employeeId", Long.class);
 

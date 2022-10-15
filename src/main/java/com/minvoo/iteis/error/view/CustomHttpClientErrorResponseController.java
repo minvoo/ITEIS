@@ -15,14 +15,11 @@ import static com.minvoo.iteis.common.PageMappingInfo.*;
 
 @Controller
 public class CustomHttpClientErrorResponseController implements ErrorController {
-
     @RequestMapping(ERROR_REQUEST)
     public String handleError(HttpServletRequest request) {
         Object status = request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE);
-
         if (status != null) {
             Integer statusCode = Integer.valueOf(status.toString());
-
             if(statusCode == HttpStatus.NOT_FOUND.value()) {
                 return RESPONSE_404_VIEW;
             }

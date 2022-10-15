@@ -11,17 +11,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import static com.minvoo.iteis.common.PageMappingInfo.LOGIN_PAGE;
+
 @Controller
 @RequestMapping("/")
 public class LoginWebController {
     // TODO: will work on that when I find the way how to make JWT  works on Web Controllers.
-
-
     @Autowired
     AuthenticationService authenticationService;
-
-
-    @GetMapping("login")
+    @GetMapping(LOGIN_PAGE)
     public String getLogin(Model model) {
         if (authenticationService.isUserLogged()) {
             return "redirect:/";
@@ -30,6 +28,9 @@ public class LoginWebController {
         return "authentication/sign-in.html";
     }
 }
+
+
+// TODO: attempt for JWT tokens
 /*
     @PostMapping("/process-login")
         public String processLogin(Model model, Employee employee) {

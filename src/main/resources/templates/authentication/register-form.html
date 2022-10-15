@@ -70,19 +70,18 @@
     </div>
     <br>
     <span style="margin-left: auto; margin-right: auto; text-align: center;">
-                                <div>
-                                    <button id="submitBtn" type="submit" class="btn btn-primary mt-2">Register</button>
-                                    <a id="backBtn" th:href="@{/}" type="button" class="btn btn-secondary mt-2">Go
-                                        back</a>
-                                </div>
+        <div>
+            <button id="submitBtn" type="submit" class="btn btn-primary mt-2">Register</button>
+            <a id="backBtn" th:href="@{/}" type="button" class="btn btn-secondary mt-2">Go
+                back</a>
+        </div>
 
-                                <div>
-                                    <p sec:authorize="isAnonymous()" style="margin-top: 10px;">Already have an account? Click <a th:href="@{/authentication/sign-in}"
-                                                                                                   class="a-home">here</a>
-                                         to log in.
-                                    </p>
-                                  <p style="margin-top: 10px;"><a href="/"  class="a-home">Back to main page</a></p>
-                                </div>
+        <div>
+            <p sec:authorize="isAnonymous()" style="margin-top: 10px;">Already have an account? Click <a th:href="@{/login}"
+              class="a-home">here</a> to log in.
+            </p>
+          <p style="margin-top: 10px;"><a href="/"  class="a-home">Back to main page</a></p>
+        </div>
 </span>
   </div>
 </form>

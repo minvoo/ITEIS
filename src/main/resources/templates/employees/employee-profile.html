@@ -34,8 +34,8 @@
                     <td th:text="${employee.role}">...</td>
                     <td th:text="${employee.uuid}">...</td>
                     <td th:text="${employee.createTime}">...</td>
-                    <td><form action="/employees/passwordchange" method="POST">
-                        <a class="btn btn-sm btn-info" type="submit" th:href="@{profile/changepassword}">Change password</a>
+                    <td><form action="/employees/password-change" method="POST">
+                        <a class="btn btn-sm btn-info" type="submit" th:href="@{profile/change-password}">Change password</a>
                     </form>
                     </td>
                 </tr>

@@ -29,28 +29,22 @@ public class ComputerServiceImpl implements ComputerService {
         Computer computer = computerRepository.findById(id)
                 .orElseThrow(() -> new ComputerNotFoundException("Computer not found.")
                 );
-
         return ComputerMapper.mapToDto(computer);
     }
 
     @Override
     public Computer saveComputer(Computer computer, Long employeeId) {
-
         computer.setEmployeeId(employeeId);
         return computerRepository.saveAndFlush(computer);
     }
 
     @Override
     public void deleteById(Long id) {
-
         computerRepository.deleteById(id);
-
     }
 
     @Override
     public ComputerDto updateComputer(ComputerDto computerDto, Long id) {
-
-
         Computer computer = computerRepository.getById(id);
         computer.setDisk(computerDto.getDisk())
                 .setDiskCapacity(computerDto.getDiskCapacity())
@@ -60,7 +54,6 @@ public class ComputerServiceImpl implements ComputerService {
                 .setOsKey(computerDto.getOsKey())
                 .setOperatingSystem(computerDto.getOperatingSystem())
                 .setProcessor(computerDto.getProcessor());
-
         computerRepository.saveAndFlush(computer);
         return ComputerMapper.mapToDto(computer);
     }

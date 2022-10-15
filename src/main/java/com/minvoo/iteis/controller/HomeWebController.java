@@ -8,18 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class HomeWebController {
-
     @GetMapping("/")
-public String showMainPage(Model model) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-
-        Object principal = authentication.getPrincipal();
-
-        if (principal != null) {
-            model.addAttribute("principal", authentication.getName());
-        } else {
-            model.addAttribute("principal", "niezalogowany");
-        }
+    public String showMainPage() {
         return "home.html";
-}
+    }
 }

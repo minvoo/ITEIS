@@ -24,8 +24,6 @@ public interface EmployeeService {
 
     Optional<Employee> findByUsername(String username);
 
-    Optional<Employee> findByUuid(String uuid);
-
     void changeRole(Long id);
 
     void deleteById(Long id, Authentication authentication);

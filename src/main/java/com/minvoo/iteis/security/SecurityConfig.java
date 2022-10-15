@@ -11,12 +11,12 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+import static com.minvoo.iteis.common.PageMappingInfo.*;
 
 @Configuration
 @EnableWebSecurity
@@ -27,9 +27,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder authenticationManager) throws Exception {
-        authenticationManager
-                .userDetailsService(customUserDetailsService)
-                .passwordEncoder(passwordEncoder());
+        authenticationManager.userDetailsService(customUserDetailsService).passwordEncoder(passwordEncoder());
     }
 
     @Override
@@ -41,17 +39,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
-                .formLogin(form ->form.loginPage("/login").defaultSuccessUrl("/"))
+                .formLogin(form -> form.loginPage("/" + LOGIN_PAGE).defaultSuccessUrl("/"))
                 .authorizeRequests()
-                .antMatchers("/login").permitAll()
+                .antMatchers("/" + LOGIN_PAGE).permitAll()
                 .antMatchers("/authentication/**").permitAll()
-                .antMatchers("/employees/changepassword").authenticated()
-                .antMatchers("/employees/details/**").hasRole(Role.ADMIN.name())
-                .antMatchers("/employees/employee-add").hasRole(Role.ADMIN.name())
-                .antMatchers("/employees/list").hasRole(Role.ADMIN.name())
-
-                .antMatchers("/employees/delete/**").hasRole(Role.ADMIN.name())
-                .antMatchers("/admin/**").hasRole(Role.ADMIN.name())
+                .antMatchers(EMPLOYEE_PROFILE_PASSWORD_CHANGE_PATH).authenticated()
+                .antMatchers(EMPLOYEE_DETAILS_CHANGE_PATH + "**").hasRole(Role.ADMIN.name())
+                .antMatchers(EMPLOYEE_ADD_PATH).hasRole(Role.ADMIN.name())
+                .antMatchers("/employees" + ELEMENTS_LIST_WEB_PATH).hasRole(Role.ADMIN.name())
+                .antMatchers(EMPLOYEE_DELETE_PATH + "**").hasRole(Role.ADMIN.name())
+                .antMatchers(ALL_ADMIN_PAGES_PATH).hasRole(Role.ADMIN.name())
                 .and().httpBasic();
 
         // TODO: will enable below line of code
@@ -74,13 +71,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**")
-                        .allowedOrigins("*")
-                        .allowedMethods("*");
+                registry.addMapping("/**").allowedOrigins("*").allowedMethods("*");
             }
         };
     }
-
 }
 
 

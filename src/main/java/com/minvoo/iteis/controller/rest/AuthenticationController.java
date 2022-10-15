@@ -11,17 +11,19 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import static com.minvoo.iteis.common.PageMappingInfo.AUTHENTICATION_API_PATH;
+
 @RestController
-@RequestMapping("api/authentication")//pre-path
+@RequestMapping(AUTHENTICATION_API_PATH)//pre-path
 public class AuthenticationController {
     @Autowired
     private AuthenticationService authenticationService;
-
     @Autowired
     private EmployeeService employeeService;
 
     @PostMapping("sign-up")//api/authentication/sign-up
     public ResponseEntity<?> signUp(@RequestBody Employee employee) {
+
         if (employeeService.findByUsername(employee.getUsername()).isPresent()) {
             return new ResponseEntity<>(HttpStatus.CONFLICT);
         }
