@@ -1,0 +1,64 @@
+<div th:replace="components/head :: fragment" xmlns="http://www.w3.org/1999/html"></div>
+<div th:replace="components/header:: fragment"></div>
+<body>
+
+<div class="cont">
+    <div class="title">
+        <span class="title_text_main">
+            <span th:if="${printer.id != null}">Update</span>
+            <span th:if="${printer.id == null}">Create new </span>
+            printer
+        </span>
+        <span class="title_text_sub">
+                <span>
+                </span>
+        </span>
+    </div>
+    <div class="fill">
+
+        <form name="printerFrm" th:action="@{/printers/add}" method="post"
+              style="max-width: 600px; margin: 0 auto; background-color: white; border-radius: 20px;
+      margin-top: 20px;"
+              th:object="${printer}">
+
+            <div th:if="${errorMsg != null}">
+                <div class="alert alert-info">
+                    <span th:text="${errorMsg}">Error message.</span>
+                </div>
+            </div>
+
+            <div class="p-3" style="z-index: 2">
+                <div class="form-group row">
+                    <input type="hidden" class="form-control" th:field="*{id}"/>
+                    <label class="col-4 col-form-label">Manufacturer</label>
+                    <div class="col-8">
+                        <input type="text" class="form-control" th:field="*{manufacturer}" required
+                               placeholder="enter manufacturer"/>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-4 col-form-label">Model</label>
+                    <div class="col-8">
+                        <input type="text" class="form-control" th:field="*{model}" required
+                               placeholder="enter model"/>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-4 col-form-label control-label">Employee </label>
+                    <div class="col-8">
+
+                        <select name="employeeId" id="dropOperator">
+                            <option th:each="employee : ${employees}" th:value="${employee.id}"
+                                    th:text="${employee.firstName} + ' ' + ${employee.lastName}">
+                            </option>
+                        </select>
+                        <button type="submit" class="btn btn-primary mt-2">Submit</button>
+
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+<div th:replace="components/footer:: fragment"></div>

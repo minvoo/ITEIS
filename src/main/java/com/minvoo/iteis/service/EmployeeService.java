@@ -2,6 +2,7 @@ package com.minvoo.iteis.service;
 
 
 import com.minvoo.iteis.dto.EmployeeDto;
+import com.minvoo.iteis.dto.PrinterDto;
 import com.minvoo.iteis.entity.Employee;
 import org.springframework.security.core.Authentication;
 
@@ -27,4 +28,6 @@ public interface EmployeeService {
     void changeRole(Long id);
 
     void deleteById(Long id, Authentication authentication);
+
+    EmployeeDto addPrinter(Long employeeId, PrinterDto printerDto);
 }

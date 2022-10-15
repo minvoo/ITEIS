@@ -1,10 +1,13 @@
 package com.minvoo.iteis.service;
 
 import com.minvoo.iteis.dto.EmployeeDto;
+import com.minvoo.iteis.dto.PrinterDto;
 import com.minvoo.iteis.entity.Employee;
+import com.minvoo.iteis.entity.Printer;
 import com.minvoo.iteis.entity.Role;
 import com.minvoo.iteis.exception.EmployeeNotFoundException;
 import com.minvoo.iteis.mapper.EmployeeMapper;
+import com.minvoo.iteis.mapper.PrinterMapper;
 import com.minvoo.iteis.repository.EmployeeRepository;
 import com.minvoo.iteis.utils.UuidGenerator;
 import lombok.extern.slf4j.Slf4j;
@@ -16,6 +19,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 @Slf4j
@@ -25,6 +29,9 @@ public class EmployeeServiceImpl implements EmployeeService {
     private PasswordEncoder passwordEncoder;
     @Autowired
     private EmployeeRepository employeeRepository;
+
+    @Autowired
+    private PrinterService printerService;
 
     @Override
     public List<EmployeeDto> getAllEmployees() {
@@ -80,9 +87,27 @@ public class EmployeeServiceImpl implements EmployeeService {
         String empName = authentication.getName();
         Optional<Employee> employeeOptional = findByUsername(empName);
         Employee employee = employeeOptional.get();
-        if (employee.getId() != id) {
-            deleteById(id);
+        if (employee.getId() == id) {
+            return;
         }
+        Employee employeeToDelete = employeeRepository.findById(id)
+                .orElseThrow(() -> new EmployeeNotFoundException("User with id " + id + "doesn't exist"));
+        EmployeeDto employeeToDeleteDto = EmployeeMapper.mapToDto(employeeToDelete);
+        List<Printer> allEmployeesPrinters = printerService.findAllByEmployee(employeeToDeleteDto);
+
+        if (!allEmployeesPrinters.isEmpty()) {
+            allEmployeesPrinters.stream().forEach(e -> e.setEmployee(null));
+        }
+        deleteById(id);
+    }
+
+    @Override
+    public EmployeeDto addPrinter(Long employeeId, PrinterDto printerDto) {
+        EmployeeDto employeeDto = findById(employeeId);
+        Printer printer = PrinterMapper.mapToEntity(printerDto);
+        Employee employee = EmployeeMapper.mapToEntity(employeeDto);
+        Employee employeeUpdated = saveEmployee(employee);
+        return EmployeeMapper.mapToDto(employeeUpdated);
     }
 
     @Override

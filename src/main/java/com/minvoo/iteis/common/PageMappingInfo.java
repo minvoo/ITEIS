@@ -10,6 +10,7 @@ public class PageMappingInfo {
     public static final String ERROR_REQUEST = "/error";
     public static final String AUTHENTICATION_API_PATH = "/api/authentication";
     public static final String EMPLOYEES_API_PATH = "/api/employees";
+    public static final String PRINTERS_API_PATH = EMPLOYEES_API_PATH + "/printers";
     public static final String ADMIN_WEB_PATH = "/admin";
     public static final String ADMIN_WEB_ROLE_ID_PATH = "/role/{id}";
     public static final String EMPLOYEES_WEB_PATH = "/employees";

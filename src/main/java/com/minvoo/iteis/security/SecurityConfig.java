@@ -43,6 +43,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/" + LOGIN_PAGE).permitAll()
                 .antMatchers("/authentication/**").permitAll()
+                .antMatchers("/printers/add").hasRole(Role.ADMIN.name())
                 .antMatchers(EMPLOYEE_PROFILE_PASSWORD_CHANGE_PATH).authenticated()
                 .antMatchers(EMPLOYEE_DETAILS_CHANGE_PATH + "**").hasRole(Role.ADMIN.name())
                 .antMatchers(EMPLOYEE_ADD_PATH).hasRole(Role.ADMIN.name())

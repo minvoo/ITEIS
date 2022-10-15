@@ -17,10 +17,10 @@
             <a href="/employees/list">Employees List</a>
             <a href="/authentication/sign-up">Computer List</a>
             <a href="/authentication/sign-up">Mobile List</a>
-            <a href="/authentication/sign-up">Printer List</a>
+            <a href="/printers/list">Printer List</a>
     </span>
         <span class="auth-span" sec:authorize="isAuthenticated()">
-               <a href="/authentication/sign-up">My devices</a>
+               <a href="/employees/profile/devices">My devices</a>
         <form name="logoutForm" th:hidden="true" method="post" th:action="@{/logout}"
               th:object="${user}">
             <input type="submit" value="Logout">

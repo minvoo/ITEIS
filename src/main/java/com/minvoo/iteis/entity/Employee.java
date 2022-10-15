@@ -10,6 +10,7 @@ import lombok.experimental.Accessors;
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -56,6 +57,9 @@ public class Employee {
     @Enumerated(EnumType.STRING)
     @Column(name = "role")
     private Role role;
+
+//    @OneToMany(mappedBy = "employee")
+//    private Set<Printer> printers = Set.of();
 
     @Transient
     private String token;
