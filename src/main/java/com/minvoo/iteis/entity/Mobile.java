@@ -1,12 +1,9 @@
 package com.minvoo.iteis.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 
@@ -14,9 +11,9 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name="printers")
+@Table(name="mobiles")
 @Accessors(chain = true, fluent = false)
-public class Printer {
+public class Mobile {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

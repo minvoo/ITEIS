@@ -19,9 +19,9 @@ import java.util.Optional;
 public class PrinterServiceImpl implements PrinterService {
 
     @Autowired
-    PrinterRepository printerRepository;
+    private PrinterRepository printerRepository;
     @Autowired
-    EmployeeService employeeService;
+    private EmployeeService employeeService;
 
 
     @Override

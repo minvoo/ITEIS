@@ -11,11 +11,11 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="printer, pStat : ${printers}">
+        <tr th:each="mobile, pStat : ${mobiles}">
             <td th:text="${pStat.count}">...</td>
-            <td th:text="${printer.id}">...</td>
-            <td th:text="${printer.manufacturer}">...</td>
-            <td th:text="${printer.model}">...</td>
+            <td th:text="${mobile.id}">...</td>
+            <td th:text="${mobile.manufacturer}">...</td>
+            <td th:text="${mobile.model}">...</td>
             </td>
         </tr>
         </tbody>

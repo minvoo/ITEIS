@@ -22,7 +22,5 @@ public class ComputerDto {
     private String osKey;
     private String officeVersion;
     private String officeKey;
-    private Boolean isLaptop;
-    private Long employeeId;
     private Employee employee;
 }
