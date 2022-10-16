@@ -31,7 +31,7 @@
     <a href="https://github.com/minvoo/iteis"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://iteis.herokuapp.com" style="color: red;font-weight: bold">View live Demo</a>
+    <a href="#" style="color: red;font-weight: bold"><s>View live Demo - not available yet</s></a>
     ·
     <a href="https://github.com/minvoo/iteis/issues">Report Bug</a>
     ·
@@ -99,8 +99,7 @@ Every employee has it's own profile. System has two different roles - Admin and 
 
 ### Live Demo
 
-1. <a href="https://iteis.herokuapp.com" style="color: red;font-weight: bold">Try live demo here</a> (available for some
-   time <b>only</b>)
+1. <a href="#" style="color: red;font-weight: bold"><s>Try live demo here</s></a> (not available yet)
 
 * Admin password
 
@@ -181,31 +180,31 @@ Users can:
 ## REST-API
 Full documentation with all available API endpoints available <a href="http://localhost:8081/swagger-ui/">here</a> (if you are running the app at localhost) or <a href="http://iteis.herokuapp.com/swagger-ui/">here</a> (if you are running the app on live demo)
 
-Sample API calls to perform (replace ``%host%`` with ``localhost:8081`` or ``iteis.herokuapp.com`` accordingly to the type of server you are working with.
+Sample API calls to perform <s>(replace ``%host%`` with ``localhost:8081`` or ``iteis.herokuapp.com`` accordingly to the type of server you are working with.</s>
 ```
-%host%/api/authentication/sign-up
-%host%/api/authentication/sign-in
+localhost:8081/api/authentication/sign-up
+localhost:8081/api/authentication/sign-in
 
-%host%/api/employees
-%host%/api/employees/list
-%host%/api/employees/details/{id}
-%host%/api/employees/delete/{id}
-%host%/api/employees/change/{id}
+localhost:8081/api/employees
+localhost:8081/api/employees/list
+localhost:8081/api/employees/details/{id}
+localhost:8081/api/employees/delete/{id}
+localhost:8081/api/employees/change/{id}
 
-%host%/api/printers
-%host%/api/printers/list
-%host%/api/printers/details/{id}
-%host%/api/printers/delete/{id}
+localhost:8081/api/printers
+localhost:8081/api/printers/list
+localhost:8081/api/printers/details/{id}
+localhost:8081/api/printers/delete/{id}
 
-%host%/api/computers
-%host%/api/computers/list
-%host%/api/computers/details/{id}
-%host%/api/computers/delete/{id}
+localhost:8081/api/computers
+localhost:8081/api/computers/list
+localhost:8081/api/computers/details/{id}
+localhost:8081/api/computers/delete/{id}
 
-%host%/api/mobiles
-%host%/api/mobiles/list
-%host%/api/mobiles/details/{id}
-%host%/api/mobiles/delete/{id}
+localhost:8081/api/mobiles
+localhost:8081/api/mobiles/list
+localhost:8081/api/mobiles/details/{id}
+localhost:8081/api/mobiles/delete/{id}
 ```
 
 ## Contributing
