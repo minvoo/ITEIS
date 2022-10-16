@@ -7,6 +7,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class ComputerMapper {
+
+    /**
+     * Converts entity to DTO object
+     * @param computer - entity to convert it to dto
+     * @return ComputerDto
+     */
     public static ComputerDto mapToDto(Computer computer) {
 
         return new ComputerDto()
@@ -21,13 +27,24 @@ public class ComputerMapper {
                 .setOfficeVersion(computer.getOfficeVersion())
                 .setOperatingSystem(computer.getOperatingSystem());
     }
+
+    /**
+     * Converts entity to dto object
+     * @param computers - list of entity objects
+     * @return List<ComputerDto>
+     */
     public static List<ComputerDto> mapToDto(List<Computer> computers) {
 
         return computers.stream()
                 .map(ComputerMapper::mapToDto)
                 .collect(Collectors.toList());
     }
-    
+
+    /**
+     * Converts dto to entity object
+     * @param computerDto - dto to convert into entity
+     * @return Computer
+     */
     public static Computer mapToEntity(ComputerDto computerDto) {
         return new Computer()
                 .setProcessor(computerDto.getProcessor())
@@ -41,6 +58,12 @@ public class ComputerMapper {
                 .setOperatingSystem(computerDto.getOperatingSystem())
                 .setId(computerDto.getId());
     }
+
+    /**
+     * Converts dtos to entity objects
+     * @param computerDtos - list of dtos to convert into entity objects
+     * @return List<Computer>
+     */
 
     public static List<Computer> mapToEntity(List<ComputerDto> computerDtos) {
         return computerDtos.stream()

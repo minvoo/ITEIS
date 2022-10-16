@@ -13,12 +13,17 @@ public class CurrentUserUtils {
 
     private EmployeeService employeeService;
 
+
     @Autowired
     public CurrentUserUtils(EmployeeService employeeService) {
         this.employeeService = employeeService;
     }
 
-
+    /**
+     * Gets current logged in user as entity.
+     * @param authentication - authentiction from SecurityContextHolder
+     * @return
+     */
     public Employee getCurrentUser(Authentication authentication) {
         Optional<Employee> employeeOptional = employeeService.findByUsername(authentication.getName());
         Employee employee = employeeOptional.get();

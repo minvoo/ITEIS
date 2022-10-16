@@ -35,12 +35,22 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Autowired
     private ComputerService computerService;
 
+    /**
+     * Finds all employes (as DTO objects) in the database
+     * @return List<EmployeeDto>
+     */
     @Override
     public List<EmployeeDto> getAllEmployees() {
         List<Employee> employees = employeeRepository.findAll();
         return EmployeeMapper.mapToDto(employees);
     }
 
+    /**
+     * Finds entity in database by Employee ID.<br>
+     * Returns Optional in case of getting null from database.
+     * @param id - primary key value of Employee Entity
+     * @return EmployeeDto
+     */
     @Override
     public EmployeeDto findById(Long id) {
         Employee employee = employeeRepository.findById(id).orElseThrow(
@@ -48,6 +58,11 @@ public class EmployeeServiceImpl implements EmployeeService {
         return EmployeeMapper.mapToDto(employee);
     }
 
+    /**
+     * Adds employee to database
+     * @param employee - object to add to database
+     * @return Employee
+     */
     @Override
     public Employee saveEmployee(Employee employee) {
         employee.setCreateTime(LocalDateTime.now());
@@ -57,6 +72,13 @@ public class EmployeeServiceImpl implements EmployeeService {
         return employeeRepository.saveAndFlush(employee);
     }
 
+    /**
+     * Updates existing employee in database.
+     * Additionally encode password with BCryptEncoder
+     * @param employeeDto - object to get new fields values from
+     * @param id - id of employee to change fields  values
+     * @return EmployeeDto
+     */
     @Override
     public EmployeeDto updateEmployee(EmployeeDto employeeDto, Long id) {
         Employee employee = employeeRepository.getById(id);
@@ -70,6 +92,12 @@ public class EmployeeServiceImpl implements EmployeeService {
         return EmployeeMapper.mapToDto(employeeUpdated);
     }
 
+    /**
+     * Changes password of Employee
+     * @param employeeDto - object retrieved from html form with new password
+     * @param id - primary key of existing Employee in database
+     * @return
+     */
     @Override
     public EmployeeDto changePassword(EmployeeDto employeeDto, Long id) {
         Employee emp = employeeRepository.getById(id);
@@ -79,11 +107,21 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     }
 
+    /**
+     * Deletes entity from db
+     * @param id - existing Employee ID in db
+     */
     @Override
     public void deleteById(Long id) {
         employeeRepository.deleteById(id);
     }
 
+    /**
+     * Deletes entity from db
+     * Also sets all foreign keys to null
+     * @param id - existing Employee ID in db
+     * @param authentication - value for check if user is authenticated to run method
+     */
     @Override
     public void deleteById(Long id, Authentication authentication) {
         String empName = authentication.getName();
@@ -112,21 +150,24 @@ public class EmployeeServiceImpl implements EmployeeService {
         deleteById(id);
     }
 
-    @Override
-    public EmployeeDto addPrinter(Long employeeId, PrinterDto printerDto) {
-        EmployeeDto employeeDto = findById(employeeId);
-        Printer printer = PrinterMapper.mapToEntity(printerDto);
-        Employee employee = EmployeeMapper.mapToEntity(employeeDto);
-        Employee employeeUpdated = saveEmployee(employee);
-        return EmployeeMapper.mapToDto(employeeUpdated);
-    }
-
+    /**
+     * Finds employee by his username
+     * @param username - username field value in database
+     * @return Optional<Employee>
+     */
     @Override
     public Optional<Employee> findByUsername(String username) {
         return employeeRepository.findByUsername(username);
 
     }
 
+    /**
+     * Changes role of selected Employee.
+     * If user has Admin role, method changes it to User and vice versa
+     * Current Admin can't change his role in case of security.
+     * @param id - id of user to change his role
+     * @returns void
+     */
     @Override
     public void changeRole(Long id) {
         EmployeeDto employee = findById(id);

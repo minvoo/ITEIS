@@ -40,6 +40,10 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         return signInUser;
     }
 
+    /**
+     * Checks if current User has ADMIN role.
+     * @return "true" if user has Admin role, "false" if user has other role.
+     */
     @Override
     public boolean isLoggedUserIsAdmin() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -56,6 +60,11 @@ public class AuthenticationServiceImpl implements AuthenticationService {
             return false;
         }
     }
+
+    /**
+     * Checks if client is logged in.
+     * @return "true" if client is logged in, "false" if client is not logged in
+     */
         @Override
         public boolean isUserLogged () {
             Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
