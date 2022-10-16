@@ -7,6 +7,7 @@ import com.minvoo.iteis.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
@@ -25,7 +26,7 @@ public class EmployeeController {
     public ResponseEntity<?> getAllEmployees() {
         return new ResponseEntity<>(employeeService.getAllEmployees(), HttpStatus.OK);
     }
-    @GetMapping("details/{id}")
+    @GetMapping("/details/{id}")
     public ResponseEntity<?> getEmployee(@PathVariable Long id) {
         return new ResponseEntity<>(employeeService.findById(id), HttpStatus.OK);
     }
@@ -40,8 +41,9 @@ public class EmployeeController {
         return new ResponseEntity<>(employeeResponse, HttpStatus.OK);
     }
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<?> deleteEmployee(@PathVariable Long id) {
-        employeeService.deleteById(id);
+    public ResponseEntity<?> deleteEmployee(@PathVariable Long id,
+                                            Authentication authentication) {
+        employeeService.deleteById(id, authentication);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }
