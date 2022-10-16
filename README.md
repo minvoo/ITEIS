@@ -12,7 +12,6 @@
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
 [![LinkedIn][linkedin-shield]][linkedin-url]
 
 
@@ -60,6 +59,7 @@
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
+    <li><a href="#rest-api">REST API</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#contact">Contact</a></li>
   </ol>
@@ -176,13 +176,37 @@ Users can:
 * List all devices (computers, mobiles and printers)
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
-
-<!-- ROADMAP -->
-
-## Roadmap
-
 <!-- CONTRIBUTING -->
+
+## REST-API
+Full documentation with all available API endpoints available <a href="http://localhost:8081/swagger-ui/">here</a> (if you are running the app at localhost) or <a href="http://iteis.herokuapp.com/swagger-ui/">here</a> (if you are running the app on live demo)
+
+Sample API calls to perform (replace ``%host%`` with ``localhost:8081`` or ``iteis.herokuapp.com`` accordingly to the type of server you are working with.
+```
+%host%/api/authentication/sign-up
+%host%/api/authentication/sign-in
+
+%host%/api/employees
+%host%/api/employees/list
+%host%/api/employees/details/{id}
+%host%/api/employees/delete/{id}
+%host%/api/employees/change/{id}
+
+%host%/api/printers
+%host%/api/printers/list
+%host%/api/printers/details/{id}
+%host%/api/printers/delete/{id}
+
+%host%/api/computers
+%host%/api/computers/list
+%host%/api/computers/details/{id}
+%host%/api/computers/delete/{id}
+
+%host%/api/mobiles
+%host%/api/mobiles/list
+%host%/api/mobiles/details/{id}
+%host%/api/mobiles/delete/{id}
+```
 
 ## Contributing
 

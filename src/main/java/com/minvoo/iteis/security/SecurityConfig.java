@@ -47,12 +47,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/**/employee/**").hasRole(Role.ADMIN.name())
                 .antMatchers("/**/change/**").hasRole(Role.ADMIN.name())
                 .antMatchers("/**/delete/**").hasRole(Role.ADMIN.name())
+                .antMatchers("/api/printers/details/**").hasRole(Role.ADMIN.name())
+                .antMatchers("/api/computers/details/**").hasRole(Role.ADMIN.name())
+                .antMatchers("/api/mobiles/details/**").hasRole(Role.ADMIN.name())
+                .antMatchers("/api/printers/list").hasRole(Role.ADMIN.name())
                 .antMatchers("/**" + ELEMENTS_LIST_WEB_PATH).hasRole(Role.ADMIN.name())
                 .antMatchers("/**/profile/**").authenticated()
                 .antMatchers(EMPLOYEE_PROFILE_PASSWORD_CHANGE_PATH).authenticated()
                 .antMatchers(EMPLOYEE_DETAILS_CHANGE_PATH + "**").hasRole(Role.ADMIN.name())
                 .antMatchers(EMPLOYEE_ADD_PATH).hasRole(Role.ADMIN.name())
                 .antMatchers(ALL_ADMIN_PAGES_PATH).hasRole(Role.ADMIN.name())
+
                 .and().httpBasic();
 
         // TODO: will enable below line of code
