@@ -33,7 +33,7 @@ public class EmployeeWebController {
         model.addAttribute("employees", employees);
         return "employees/employees-list.html";
     }
-    @GetMapping("/{id}")
+    @GetMapping("/employee/{id}")
     public String getEmployee(@PathVariable Long id, Model model) {
         model.addAttribute("employee", employeeService.findById(id));
         return "/employees/employee-check-details.html";
