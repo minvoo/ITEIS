@@ -26,7 +26,7 @@ public class AuthenticationWebController {
         }
         model.addAttribute("signup", new EmployeeDto());
         model.addAttribute("user", new EmployeeDto());
-        return "authentication/sign-up.html";
+        return "/authentication/sign-up.html";
     }
 
     @PostMapping("/sign-up")
