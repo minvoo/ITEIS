@@ -34,7 +34,7 @@ public class MobileController {
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping // /api/mobile
     public ResponseEntity<?> saveMobileOrChangeDetails(@RequestBody Mobile mobile) {
-        MobileDto mobileDto = MobileMapper.mapToDto(mobile);
+        MobileDto mobileDto = MobileMapper.mapToDTO(mobile);
         return new ResponseEntity<>(mobileService.add(mobileDto), HttpStatus.CREATED);
     }
 
