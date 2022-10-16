@@ -55,7 +55,7 @@
                         <td th:text="${computer.osKey}">...</td>
                         <td th:text="${computer.officeVersion}">...</td>
                         <td th:text="${computer.officeKey}">...</td>
-                        <td th:text="${computer.employee?.firstName}  + ' ' + ${computer.employee?.firstName} ">...</td>
+                        <td th:text="${computer.employee?.firstName}  + ' ' + ${computer.employee?.lastName} ">...</td>
                         <td>
                             <a th:href="@{/computers/change/{id}/(id=${computer.id})}"
                                class="btn btn-sm btn-primary">Change details</a>

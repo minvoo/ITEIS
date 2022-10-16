@@ -43,7 +43,7 @@
                         <td th:text="${printer.id}">...</td>
                         <td th:text="${printer.manufacturer}">...</td>
                         <td th:text="${printer.model}">...</td>
-                        <td th:text="${printer.employee?.firstName}  + ' ' + ${printer.employee?.firstName} ">...</td>
+                        <td th:text="${printer.employee?.firstName}  + ' ' + ${printer.employee?.lastName} ">...</td>
                         <td>
                             <a th:href="@{/printers/change/{id}/(id=${printer.id})}"
                                class="btn btn-sm btn-primary">Change details</a>

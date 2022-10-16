@@ -43,7 +43,7 @@
                         <td th:text="${mobile.id}">...</td>
                         <td th:text="${mobile.manufacturer}">...</td>
                         <td th:text="${mobile.model}">...</td>
-                        <td th:text="${mobile.employee?.firstName}  + ' ' + ${mobile.employee?.firstName} ">...</td>
+                        <td th:text="${mobile.employee?.firstName}  + ' ' + ${mobile.employee?.lastName} ">...</td>
                         <td>
                             <a th:href="@{/mobiles/change/{id}/(id=${mobile.id})}"
                                class="btn btn-sm btn-primary">Change details</a>

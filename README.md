@@ -146,6 +146,9 @@ java -jar iteis-1.0.0-RELEASE.jar
 localhost:8081
 ```
 
+5. After first run change``application.properties`` property <br>from ``spring.jpa.hibernate.ddl-auto=create`` 
+<br>to ``spring.jpa.hibernate.ddl-auto=create``
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
