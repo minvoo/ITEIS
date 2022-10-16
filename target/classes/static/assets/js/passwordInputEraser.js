@@ -1,0 +1,1 @@
+document.getElementById("tbFormControll").value = "";

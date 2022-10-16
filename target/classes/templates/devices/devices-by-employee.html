@@ -1,0 +1,26 @@
+<div th:replace="components/head :: fragment"></div>
+<div th:replace="components/header :: fragment"></div>
+<body>
+
+<div class="cont">
+  <div class="title">
+        <span class="title_text_main">
+            <span th:text="${employee.firstName}"></span> <span th:text="${employee.lastName}"></span>
+        </span>
+    <span class="title_text_sub">
+            Your devices:
+        </span>
+  </div>
+  <div class="fill">
+    <div class="container py-3">
+
+      <div class="mb-2" th:replace="computers/computers-by-employee :: fragment"></div>
+      <div class="mb-2" th:replace="printers/printers-by-employee :: fragment"></div>
+      <div class="mb-2" th:replace="mobiles/mobiles-by-employee :: fragment"></div>
+
+    </div>
+  </div>
+</div>
+</div>
+</body>
+<div th:replace="components/footer :: fragment"></div>

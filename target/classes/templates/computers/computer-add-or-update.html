@@ -1,0 +1,116 @@
+<div th:replace="components/head :: fragment" xmlns="http://www.w3.org/1999/html"
+     xmlns:v-bind="http://www.w3.org/1999/xhtml"></div>
+<div th:replace="components/header:: fragment"></div>
+<body>
+
+<div class="cont">
+    <div class="title">
+        <span class="title_text_main">
+            <span th:if="${computer.id != null}">Update</span>
+            <span th:if="${computer.id == null}">Create new </span>
+            computer
+        </span>
+        <span class="title_text_sub">
+                <span>
+                </span>
+        </span>
+    </div>
+    <div class="fill">
+
+        <form name="computerFrm" th:action="@{/computers/add}" method="post"
+              style="max-width: 600px; margin: 0 auto; background-color: white; border-radius: 20px;
+      margin-top: 20px;"
+              th:object="${computer}">
+
+            <div th:if="${errorMsg != null}">
+                <div class="alert alert-info">
+                    <span th:text="${errorMsg}">Error message.</span>
+                </div>
+            </div>
+
+            <div class="p-3" style="z-index: 2">
+                <div class="form-group row">
+                    <input type="hidden" class="form-control" th:field="*{id}"/>
+                    <label class="col-4 col-form-label">Operating system</label>
+                    <div class="col-8">
+                        <input type="text" class="form-control" th:field="*{operatingSystem}" required
+                               placeholder="enter operating system"/>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-4 col-form-label">Processor</label>
+                    <div class="col-8">
+                        <input type="text" class="form-control" th:field="*{processor}" required
+                               placeholder="enter processor"/>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-4 col-form-label">RAM</label>
+                    <div class="col-8">
+                        <input type="text" class="form-control" th:field="*{RAM}" required
+                               placeholder="enter RAM"/>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-4 col-form-label">Disk</label>
+                    <div class="col-8">
+                        <input type="text" class="form-control" th:field="*{disk}" required
+                               placeholder="enter disk"/>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-4 col-form-label">Disk capacity</label>
+                    <div class="col-8">
+                        <input type="text" class="form-control" th:field="*{diskCapacity}" required
+                               placeholder="enter processor"/>
+                    </div>
+                </div>
+
+
+                <div class="form-group row">
+                    <label class="col-4 col-form-label">OS Key</label>
+                    <div class="col-8">
+                        <input type="text" class="form-control" th:field="*{osKey}" required
+                               placeholder="enter os key"/>
+                    </div>
+                </div>
+
+
+                <div class="form-group row">
+                    <label class="col-4 col-form-label">Office Version</label>
+                    <div class="col-8">
+                        <input type="text" class="form-control" th:field="*{officeVersion}" required
+                               placeholder="enter office Version"/>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-4 col-form-label">Office Key</label>
+                    <div class="col-8">
+                        <input type="text" class="form-control" th:field="*{officeKey}" required
+                               placeholder="enter office key"/>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-4 col-form-label control-label">Employee </label>
+                    <div class="col-8">
+
+                        <select name="employeeId" id="dropOperator">
+                            <option th:each="employee : ${employees}" th:value="${employee.id}"
+                                    th:text="${employee.firstName} + ' ' + ${employee.lastName}">
+                            </option>
+                        </select>
+
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary mt-2">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+<div th:replace="components/footer:: fragment"></div>

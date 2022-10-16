@@ -1,0 +1,20 @@
+<div th:replace="components/head :: fragment"></div>
+<div th:replace="components/header :: fragment"></div>
+
+<body>
+<div class="cont">
+    <div class="title">
+            <span class="title_text_main">
+                    Login to the app
+            </span>
+        <span class="title_text_sub">
+Use the form below to login.
+            </span>
+    </div>
+    <div class="fill">
+        <div th:replace="/authentication/login-form :: fragment"></div>
+    </div>
+</div>
+</body>
+<div th:replace="components/footer :: fragment"></div>
+
