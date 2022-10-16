@@ -10,6 +10,7 @@
 /Users/mariusz/Documents/Projekty/ITEIS/src/main/java/com/minvoo/iteis/service/PrinterService.java
 /Users/mariusz/Documents/Projekty/ITEIS/src/main/java/com/minvoo/iteis/service/MobileServiceImpl.java
 /Users/mariusz/Documents/Projekty/ITEIS/src/main/java/com/minvoo/iteis/security/SecurityConfig.java
+/Users/mariusz/Documents/Projekty/ITEIS/src/main/java/com/minvoo/iteis/controller/rest/ComputerController.java
 /Users/mariusz/Documents/Projekty/ITEIS/src/main/java/com/minvoo/iteis/dto/PrinterDto.java
 /Users/mariusz/Documents/Projekty/ITEIS/src/main/java/com/minvoo/iteis/utils/UuidGenerator.java
 /Users/mariusz/Documents/Projekty/ITEIS/src/main/java/com/minvoo/iteis/controller/EmployeeWebController.java
@@ -20,6 +21,8 @@
 /Users/mariusz/Documents/Projekty/ITEIS/src/main/java/com/minvoo/iteis/controller/MobileWebController.java
 /Users/mariusz/Documents/Projekty/ITEIS/src/main/java/com/minvoo/iteis/mapper/PrinterMapper.java
 /Users/mariusz/Documents/Projekty/ITEIS/src/main/java/com/minvoo/iteis/security/CustomUserDetailsService.java
+/Users/mariusz/Documents/Projekty/ITEIS/src/main/java/com/minvoo/iteis/config/MethodSecurityConfig.java
+/Users/mariusz/Documents/Projekty/ITEIS/src/main/java/com/minvoo/iteis/controller/rest/MobileController.java
 /Users/mariusz/Documents/Projekty/ITEIS/src/main/java/com/minvoo/iteis/controller/AdminWebController.java
 /Users/mariusz/Documents/Projekty/ITEIS/src/main/java/com/minvoo/iteis/controller/ComputerWebController.java
 /Users/mariusz/Documents/Projekty/ITEIS/src/main/java/com/minvoo/iteis/common/PageMappingInfo.java
