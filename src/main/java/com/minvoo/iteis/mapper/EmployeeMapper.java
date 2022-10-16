@@ -7,6 +7,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class EmployeeMapper {
+
+    /**
+     * Converts entity to DTO object
+     * @param employee - entity to convert it to dto
+     * @return ComputerDto
+     */
     public static EmployeeDto mapToDto(Employee employee) {
         return new EmployeeDto().toBuilder()
                 .id(employee.getId())
@@ -19,14 +25,26 @@ public class EmployeeMapper {
                 .role(employee.getRole())
                 .createTime(employee.getCreateTime())
                 .position(employee.getPosition())
-//                .computers(employee.getComputers())
+//                .employees(employee.getComputers())
                 .build();
     }
+
+    /**
+     * Converts entity to dto object
+     * @param employees - list of entity objects
+     * @return List<ComputerDto>
+     */
     public static List<EmployeeDto> mapToDto(List<Employee> employees) {
         return employees.stream()
                 .map(EmployeeMapper::mapToDto)
                 .collect(Collectors.toList());
     }
+
+    /**
+     * Converts dto to entity obbject
+     * @param employeeDto - dto to convert into entity
+     * @return Computer
+     */
     public static Employee mapToEntity(EmployeeDto employee) {
         return new Employee()
                 .setId(employee.getId())
@@ -39,6 +57,6 @@ public class EmployeeMapper {
                 .setRole(employee.getRole())
                 .setCreateTime(employee.getCreateTime())
                 .setPosition(employee.getPosition());
-//                .computers(employee.getComputers())
+//                .employees(employee.getComputers())
     }
 }

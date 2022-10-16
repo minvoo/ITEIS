@@ -23,7 +23,10 @@ public class PrinterServiceImpl implements PrinterService {
     @Autowired
     private EmployeeService employeeService;
 
-
+    /**
+     * Finds all printers saved in database
+     * @return List<PrinterDto>
+     */
     @Override
     public List<PrinterDto> findAll() {
         List<Printer> responseEntity = printerRepository.findAll();
@@ -31,6 +34,11 @@ public class PrinterServiceImpl implements PrinterService {
        return responseDto;
     }
 
+    /**
+     * Adds printer to database
+     * @param printerDto - object to add to database
+     * @return PrinterDto object saved to database
+     */
     @Override
     public PrinterDto add(PrinterDto printerDto) {
 
@@ -43,22 +51,43 @@ public class PrinterServiceImpl implements PrinterService {
         return PrinterMapper.mapToDTO(printerResponseEntity);
     }
 
+    /**
+     * Finds entity in database by id
+     * @param id - primary key value of entity
+     * @return PrinterDto object
+     */
     @Override
     public PrinterDto findById(Long id) {
         return PrinterMapper.mapToDTO(printerRepository.findById(id).get());
     }
 
+    /**
+     * Finds entity in database by Employee ID.<br>
+     * Returns Optional in case of getting null from database.
+     * @param id - primary key value of Employee Entity
+     * @return Optional<List<Printer>
+     */
     @Override
     public Optional<List<Printer>> findByEmployeeId(Long id) {
         return printerRepository.findByEmployeeId(id);
     }
 
+    /**
+     * Finds entity in database by Employee entity<br>
+     * @param employeeDto - EmployeeDto converted from Entity using Mapper object
+     * @return List<Printer>
+     */
     @Override
     public List<Printer> findAllByEmployee(EmployeeDto employeeDto) {
 
         return printerRepository.findAllByEmployee(EmployeeMapper.mapToEntity(employeeDto));
     }
 
+    /**
+     * Deletes entity by id
+     * @param id - id on entity to delete
+     * @returns void
+     */
     @Override
     public void deleteById(Long id) {
         printerRepository.deleteById(id);

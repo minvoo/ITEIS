@@ -23,6 +23,11 @@ public class ComputerServiceImpl implements ComputerService {
     @Autowired
     private ComputerRepository computerRepository;
 
+    /**
+     * Adds computer to database
+     * @param computerDto - object to add to database
+     * @return ComputerDto object saved to database
+     */
     @Override
     public ComputerDto add(ComputerDto computerDto) {
        Computer computer = ComputerMapper.mapToEntity(computerDto);
@@ -31,22 +36,44 @@ public class ComputerServiceImpl implements ComputerService {
         return ComputerMapper.mapToDto(computerResponseEntity);
     }
 
+
+    /**
+     * Finds entity in database by id
+     * @param id - primary key value of entity
+     * @return ComputerDto object
+     */
     @Override
     public ComputerDto findById(Long id) {
         return ComputerMapper.mapToDto(computerRepository.findById(id).get());
     }
 
+
+    /**
+     * Finds entity in database by Employee ID.<br>
+     * Returns Optional in case of getting null from database.
+     * @param id - primary key value of Employee Entity
+     * @return Optional<List<Computer>
+     */
     @Override
     public Optional<List<Computer>> findByEmployeeId(Long id) {
         return computerRepository.findByEmployeeId(id);
     }
 
+    /**
+     * Finds entity in database by Employee entity<br>
+     * @param employeeDto - EmployeeDto converted from Entity using Mapper object
+     * @return List<Computer>
+     */
     @Override
     public List<Computer> findAllByEmployee(EmployeeDto employeeDto) {
 
         return computerRepository.findAllByEmployee(EmployeeMapper.mapToEntity(employeeDto));
     }
 
+    /**
+     * Finds all computers (as DTO objects) in the database
+     * @return List<ComputerDto>
+     */
     @Override
     public List<ComputerDto> findAll() {
         List<Computer> responseEntity = computerRepository.findAll();
@@ -54,6 +81,11 @@ public class ComputerServiceImpl implements ComputerService {
         return responseDto;
     }
 
+    /**
+     * Deletes entity by id
+     * @param id - id on entity to delete
+     * @returns void
+     */
     @Override
     public void deleteById(Long id) {
         computerRepository.deleteById(id);

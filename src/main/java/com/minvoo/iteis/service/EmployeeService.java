@@ -29,5 +29,4 @@ public interface EmployeeService {
 
     void deleteById(Long id, Authentication authentication);
 
-    EmployeeDto addPrinter(Long employeeId, PrinterDto printerDto);
 }
