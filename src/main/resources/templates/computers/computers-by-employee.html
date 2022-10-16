@@ -1,0 +1,35 @@
+<div th:fragment="fragment">
+<h3>Computers:</h3>
+<div class="table-responsive table-iteis">
+    <table class="table table-striped table-sm">
+        <thead>
+        <tr>
+            <th scope="col">No.</th>
+            <th scope="col">ID</th>
+            <th scope="col">System</th>
+            <th scope="col">Processor</th>
+            <th scope="col">RAM</th>
+            <th scope="col">DISK</th>
+            <th scope="col">Disk Capacity</th>
+            <th scope="col">OS Key</th>
+            <th scope="col">Office</th>
+            <th scope="col">Office Key</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="computer, pStat : ${computers}">
+            <td th:text="${pStat.count}">...</td>
+            <td th:text="${computer.id}">...</td>
+            <td th:text="${computer.operatingSystem}">...</td>
+            <td th:text="${computer.processor}">...</td>
+            <td th:text="${computer.RAM}">...</td>
+            <td th:text="${computer.disk}">...</td>
+            <td th:text="${computer.diskCapacity}">...</td>
+            <td th:text="${computer.osKey}">...</td>
+            <td th:text="${computer.officeVersion}">...</td>
+            <td th:text="${computer.officeKey}">...</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</div>

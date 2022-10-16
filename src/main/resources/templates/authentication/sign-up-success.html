@@ -1,0 +1,31 @@
+
+<div th:replace="components/head :: fragment"></div>
+<div th:replace="components/header :: fragment"></div>
+<body>
+<div class="cont">
+  <div class="title">
+            <span class="title_text_main">
+                    Login to the app
+            </span>
+    <span class="title_text_sub">
+Use the form below to login.
+            </span>
+  </div>
+    <span sec:authorize="isAnonymous()">
+<div class="alert alert-info">You have signed up successfully! You can now login through the
+  form below.
+</div>
+    </span>
+    <span sec:authorize="isAuthenticated()">
+        <div class="alert alert-info">Adding new employee success!
+</div>
+  <div class="fill">
+      <form th:replace="/authentication/login-form :: fragment">...</form>
+
+  </div>
+
+</div>
+
+</body>
+
+<div th:replace="components/footer :: fragment"></div>

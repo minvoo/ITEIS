@@ -1,0 +1,66 @@
+<div th:replace="components/head :: fragment"></div>
+<div th:replace="components/header:: fragment"></div>
+<body>
+
+<div class="cont">
+    <div class="title">
+        <span class="title_text_main">
+            Printers List
+        </span>
+        <span class="title_text_sub">
+            <div>
+            <span>
+                Check details about every printer present in DB.
+            </span>
+            </div>
+            <div class="btn_emloyee_add">
+            <span>
+                <a th:href="@{/printers/add}" class="btn btn_employ btn-success float-end">Add new printer</a>
+            </span>
+            </div>
+        </span>
+    </div>
+    <div class="fill">
+        <div class="container py-3">
+
+            <div class="table-responsive table-iteis">
+                <table class="table table-striped table-sm">
+                    <thead>
+                    <tr>
+                        <th scope="col">No.</th>
+                        <th scope="col">ID</th>
+                        <th scope="col">Manufacturer</th>
+                        <th scope="col">Model</th>
+                        <th scope="col">Employee</th>
+                        <th scope="col">Operations</th>
+                        <th scope="col"> </th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="printer, pStat : ${printers}">
+                        <td th:text="${pStat.count}">...</td>
+                        <td th:text="${printer.id}">...</td>
+                        <td th:text="${printer.manufacturer}">...</td>
+                        <td th:text="${printer.model}">...</td>
+                        <td th:text="${printer.employee?.firstName}  + ' ' + ${printer.employee?.lastName} ">...</td>
+                        <td>
+                            <a th:href="@{/printers/change/{id}/(id=${printer.id})}"
+                               class="btn btn-sm btn-primary">Change details</a>
+                        </td>
+                        <td>
+                            <form th:action="@{/printers/delete/{id}/(id=${printer.id})}" method="POST">
+                                <button class="btn btn-sm btn-danger" type="submit">Delete</button>
+                            </form>
+                        </td>
+
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
+</body>
+<div th:replace="components/footer:: fragment"></div>

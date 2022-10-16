@@ -1,0 +1,45 @@
+<div th:replace="components/head :: fragment"></div>
+<div th:replace="components/header:: fragment"></div>
+<body>
+
+<div class="cont">
+  <div class="title">
+        <span class="title_text_main">
+            Change details
+        </span>
+    <span class="title_text_sub">
+
+        </span>
+  </div>
+  <div class="fill">
+
+    <form th:action="@{/employees/details}" th:object="${employee}" method="POST" >
+
+      <input type="hidden" class="form-control" th:field="*{id}"/>
+      <input type="hidden" class="form-control" th:field="*{password}"/>
+
+      <div class="form-group">
+        <label>First name</label>
+        <input type="text" class="form-control" th:field="*{firstName}" placeholder="first name"/>
+      </div>
+
+      <div class="form-group">
+        <label>Last name</label>
+        <input type="text" class="form-control" th:field="*{lastName}" placeholder="last name"/>
+      </div>
+
+      <div class="form-group">
+        <label>Position</label>
+        <input type="text" class="form-control" th:field="*{position}" placeholder="password"/>
+      </div>
+      <button type="submit" class="btn btn-primary mt-2">Submit</button>
+    </form>
+
+
+
+  </div>
+</div>
+</body>
+<div th:replace="components/footer:: fragment"></div>
+
+<script src="/assets/js/passwordInputEraser.js"></script>

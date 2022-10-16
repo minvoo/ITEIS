@@ -1,0 +1,32 @@
+<form th:fragment="fragment" th:action="@{/login}" method="post"
+      style="max-width: 600px; margin: 0 auto; overflow: hidden"
+      th:object="${user}">
+
+  <div th:if="${param.error}">
+    <div class="alert alert-info">Invalid username or password.</div>
+  </div>
+
+  <div th:if="${param.logout}" class="alert alert-success">You have been logged out.</div>
+
+  <div class="p-3">
+    <div class="form-group row">
+      <label class="col-4 col-form-label">Username</label>
+      <div class="col-8">
+        <input type="text" class="form-control" th:field="*{username}" required placeholder="Enter username"/>
+      </div>
+    </div>
+    <br>
+    <div class="form-group row">
+      <label class="col-4 col-form-label">Password: </label>
+      <div class="col-8">
+        <input type="password" th:field="*{password}" class="form-control"
+               required minlength="1" maxlength="30" placeholder="Enter password"/>
+      </div>
+    </div>
+    <br>
+
+    <div style="margin-left: auto; margin-right: auto; text-align: center">
+      <button type="submit" class="btn btn-primary mt-2">Login</button>
+    </div>
+  </div>
+</form>

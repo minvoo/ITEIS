@@ -1,0 +1,25 @@
+<div th:replace="components/head :: fragment" xmlns:sec="http://www.w3.org/1999/xhtml"></div>
+<div th:replace="components/header :: fragment"></div>
+<body>
+<div class="cont">
+    <div class="title">
+                <span class="title_text_main">
+                    ITEIS App
+                </span>
+        <span class="title_text_sub">
+        <p>IT Equipment Inventory System is simple app made for SDAxCodecool's recruitment competition.</p>
+             <span sec:authorize="isAnonymous()">
+                 <p>In order to use the app, first you need to register (as a default user)</p>
+             </span>
+            <span sec:authorize="isAuthenticated()">
+                <p><b>Since you're logged in, use some links from navbar.</b></p>
+                </span>
+            <p>Admin can see all users list, can change employees details and add devices for specific employee</p>
+            <p><b>Unfortunately</b>, front is made in thymeleaf, I didn't have time to learn React in like 7 days. Nonetheless I know that we have to use axios to consume RestAPI in front-end app.</p>
+            <p>API endpoints documentation avaiable at: <a class="font-weight-bold a-home" href="/swagger-ui/">this link</a></p>
+        </span>
+    </div>
+</div>
+
+</body>
+<div th:replace="components/footer :: fragment"></div>
