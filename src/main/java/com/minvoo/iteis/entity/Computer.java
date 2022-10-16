@@ -39,15 +39,8 @@ public class Computer {
     @Column(name = "office_key")
     private String officeKey;
 
-    @Column(name = "laptop")
-    private Boolean isLaptop;
-
-    @Column(name = "employee_id")
-    private Long employeeId;
-
-
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "employee_id", referencedColumnName = "id", insertable = false, updatable = false)
+    @JoinColumn(name = "employee_id")
     private Employee employee;
 
 }

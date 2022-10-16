@@ -2,9 +2,7 @@ package com.minvoo.iteis.service;
 
 import com.minvoo.iteis.dto.EmployeeDto;
 import com.minvoo.iteis.dto.PrinterDto;
-import com.minvoo.iteis.entity.Employee;
-import com.minvoo.iteis.entity.Printer;
-import com.minvoo.iteis.entity.Role;
+import com.minvoo.iteis.entity.*;
 import com.minvoo.iteis.exception.EmployeeNotFoundException;
 import com.minvoo.iteis.mapper.EmployeeMapper;
 import com.minvoo.iteis.mapper.PrinterMapper;
@@ -29,9 +27,13 @@ public class EmployeeServiceImpl implements EmployeeService {
     private PasswordEncoder passwordEncoder;
     @Autowired
     private EmployeeRepository employeeRepository;
-
     @Autowired
     private PrinterService printerService;
+
+    @Autowired
+    private MobileService mobileService;
+    @Autowired
+    private ComputerService computerService;
 
     @Override
     public List<EmployeeDto> getAllEmployees() {
@@ -94,9 +96,18 @@ public class EmployeeServiceImpl implements EmployeeService {
                 .orElseThrow(() -> new EmployeeNotFoundException("User with id " + id + "doesn't exist"));
         EmployeeDto employeeToDeleteDto = EmployeeMapper.mapToDto(employeeToDelete);
         List<Printer> allEmployeesPrinters = printerService.findAllByEmployee(employeeToDeleteDto);
+        List<Mobile> allEmployeesMobiles = mobileService.findAllByEmployee(employeeToDeleteDto);
+        List<Computer> allEmployeesComputers = computerService.findAllByEmployee(employeeToDeleteDto);
+
 
         if (!allEmployeesPrinters.isEmpty()) {
             allEmployeesPrinters.stream().forEach(e -> e.setEmployee(null));
+        }
+        if (!allEmployeesMobiles.isEmpty()) {
+            allEmployeesMobiles.stream().forEach(e -> e.setEmployee(null));
+        }
+        if (!allEmployeesComputers.isEmpty()) {
+            allEmployeesComputers.stream().forEach(e -> e.setEmployee(null));
         }
         deleteById(id);
     }

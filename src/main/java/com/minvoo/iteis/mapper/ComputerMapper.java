@@ -13,9 +13,7 @@ public class ComputerMapper {
                 .setDisk(computer.getDisk())
                 .setId(computer.getId())
                 .setDiskCapacity(computer.getDiskCapacity())
-                .setIsLaptop(computer.getIsLaptop())
                 .setEmployee(computer.getEmployee())
-                .setEmployeeId(computer.getEmployeeId())
                 .setOfficeKey(computer.getOfficeKey())
                 .setRAM(computer.getRAM())
                 .setProcessor(computer.getProcessor())
@@ -27,6 +25,26 @@ public class ComputerMapper {
 
         return computers.stream()
                 .map(ComputerMapper::mapToDto)
+                .collect(Collectors.toList());
+    }
+    
+    public static Computer mapToEntity(ComputerDto computerDto) {
+        return new Computer()
+                .setProcessor(computerDto.getProcessor())
+                .setRAM(computerDto.getRAM())
+                .setOfficeVersion(computerDto.getOfficeVersion())
+                .setOfficeKey(computerDto.getOfficeKey())
+                .setOsKey(computerDto.getOsKey())
+                .setDiskCapacity(computerDto.getDiskCapacity())
+                .setDisk(computerDto.getDisk())
+                .setEmployee(computerDto.getEmployee())
+                .setOperatingSystem(computerDto.getOperatingSystem())
+                .setId(computerDto.getId());
+    }
+
+    public static List<Computer> mapToEntity(List<ComputerDto> computerDtos) {
+        return computerDtos.stream()
+                .map(ComputerMapper::mapToEntity)
                 .collect(Collectors.toList());
     }
 }

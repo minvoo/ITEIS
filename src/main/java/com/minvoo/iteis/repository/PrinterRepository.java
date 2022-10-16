@@ -12,7 +12,6 @@ import java.util.Optional;
 
 public interface PrinterRepository extends JpaRepository<Printer,Long> {
 
-
     @Override
     List<Printer> findAll();
 
